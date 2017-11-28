@@ -3,3 +3,168 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#statBlock {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  border: 3px solid black;
+}
+
+#statBlock>div {
+  border: 1px solid black;
+}
+
+#name {
+  grid-column-start:1;
+  grid-column-end:14;
+  grid-row-start:1;
+  grid-row-end:3;
+}
+
+#keywords {
+  grid-column-start:1;
+  grid-column-end:9;
+  grid-row-start:3;
+  grid-row-end:4;
+}
+
+#ac {
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:4;
+  grid-row-end:6;
+}
+
+#fort {
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:6;
+  grid-row-end:8;
+}
+
+#ref {
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:8;
+  grid-row-end:10;
+}
+
+#will {
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:10;
+  grid-row-end:12;
+}
+
+#resist {
+  grid-column-start:3;
+  grid-column-end:9;
+  grid-row-start:4;
+  grid-row-end:6;
+}
+
+#initiative {
+  grid-column-start:9;
+  grid-column-end:14;
+  grid-row-start:3;
+  grid-row-end:4;
+}
+
+#speed {
+  grid-column-start:9;
+  grid-column-end:14;
+  grid-row-start:4;
+  grid-row-end:6;
+}
+
+#save {
+  grid-column-start:14;
+  grid-column-end:17;
+  grid-row-start:5;
+  grid-row-end:6;
+}
+
+#ap {
+  grid-column-start:17;
+  grid-column-end:19;
+  grid-row-start:5;
+  grid-row-end:6;
+}
+
+#hp {
+  grid-column-start:3;
+  grid-column-end:9;
+  grid-row-start:6;
+  grid-row-end:12;
+}
+
+#str {
+  grid-column-start:16;
+  grid-column-end:19;
+  grid-row-start:6;
+  grid-row-end:7;
+}
+
+#con {
+  grid-column-start:16;
+  grid-column-end:19;
+  grid-row-start:7;
+  grid-row-end:8;
+}
+
+#dex {
+  grid-column-start:16;
+  grid-column-end:19;
+  grid-row-start:8;
+  grid-row-end:9;
+}
+
+#int {
+  grid-column-start:16;
+  grid-column-end:19;
+  grid-row-start:9;
+  grid-row-end:10;
+}
+
+#wis {
+  grid-column-start:16;
+  grid-column-end:19;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#cha {
+  grid-column-start:16;
+  grid-column-end:19;
+  grid-row-start:11;
+  grid-row-end:12;
+}
+
+#senses {
+  grid-column-start:9;
+  grid-column-end:16;
+  grid-row-start:6;
+  grid-row-end:7;
+}
+
+#languages {
+  grid-column-start:9;
+  grid-column-end:16;
+  grid-row-start:7;
+  grid-row-end:8;
+}
+
+#alignment {
+  grid-column-start:9;
+  grid-column-end:16;
+  grid-row-start:8;
+  grid-row-end:9;
+}
+
+#skills {
+  grid-column-start:9;
+  grid-column-end:16;
+  grid-row-start:9;
+  grid-row-end:12;
+}
