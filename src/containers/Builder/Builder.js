@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import StatBox from "../components/StatBox";
+import StatBox from "../../components/StatBox";
 
 class Builder extends Component {
     

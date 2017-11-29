@@ -9,7 +9,7 @@ import Layout from "./hoc/Layout/Layout";
 class App extends Component {
   render() {
     return (
-      <Layout className="App">
+      <Layout>
         <Route path="/" exact component={Landing}/>
         <Route path="/builder" component={Builder}/>
       </Layout>

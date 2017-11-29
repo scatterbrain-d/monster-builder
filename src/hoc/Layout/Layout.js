@@ -4,10 +4,9 @@ import Aux from "../Aux/Aux";
 const layout = (props) => {
     return (
         <Aux>
-            <nav/>
-            <main>
-                {this.props.children}
-            </main>
+            <nav></nav>
+            
+                {props.children}
         </Aux>
     );
 };
