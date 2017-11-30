@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import {Route} from "react-router-dom";
 
-import './App.css';
 import Builder from "./containers/Builder/Builder";
 import Landing from "./containers/Landing/Landing";
-import Layout from "./hoc/Layout/Layout";
+import Navbar from "./components/Navigation/Navbar/Navbar";
 
 class App extends Component {
   render() {
     return (
-      <Layout>
+      <div className="app">
+        <Navbar/>
         <Route path="/" exact component={Landing}/>
         <Route path="/builder" component={Builder}/>
-      </Layout>
+      </div>
     );
   }
 }

@@ -5,12 +5,36 @@ html {
   box-sizing: inherit;
 }
 
-body, #root, .App {
+body, #root, .app {
   height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.navbar {
+  height: 50px;
+  background-color: steelblue;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navbar li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.navbar a {
+   text-decoration: none;
+   color: #ccc;
 }
 
 #statBlock {
