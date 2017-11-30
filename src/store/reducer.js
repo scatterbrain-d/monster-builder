@@ -152,57 +152,19 @@ const create = (state) => {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case (actionTypes.SET_LEVEL): {
-            return {
-                ...state,
-                level: action.val
-            };
-        }
-        case (actionTypes.SET_THREAT): {
-            return {
-                ...state,
-                threat: action.val
-            };
-        }
-        case (actionTypes.SET_ROLE): {
-            return {
-                ...state,
-                role: action.val
-            };
-        }
-        case (actionTypes.SET_LEADER): {
-            return {
-                ...state,
-                leader: action.val
-            };
-        }
-        case (actionTypes.CREATE_MONSTER): {
-            return create(state);
-        }
-        case (actionTypes.UPDATE_NAME): {return {...state, stat: {...state.stat, name: action.val}};}
-        case (actionTypes.UPDATE_KEYWORDS): {return {...state, stat: {...state.stat, keywords: action.val}};}
-        case (actionTypes.UPDATE_HP): {return {...state, stat: {...state.stat, hp: action.val}};}
-        case (actionTypes.UPDATE_AC): {return {...state, stat: {...state.stat, ac: action.val}};}
-        case (actionTypes.UPDATE_FORT): {return {...state, stat: {...state.stat, fort: action.val}};}
-        case (actionTypes.UPDATE_REF): {return {...state, stat: {...state.stat, ref: action.val}};}
-        case (actionTypes.UPDATE_WILL): {return {...state, stat: {...state.stat, will: action.val}};}
-        case (actionTypes.UPDATE_SPEED): {return {...state, stat: {...state.stat, speed: action.val}};}
-        case (actionTypes.UPDATE_INITIATIVE): {return {...state, stat: {...state.stat, initiative: action.val}};}
-        case (actionTypes.UPDATE_RESIST): {return {...state, stat: {...state.stat, resist: action.val}};}
-        case (actionTypes.UPDATE_SENSES): {return {...state, stat: {...state.stat, senses: action.val}};}
-        case (actionTypes.UPDATE_SKILLS): {return {...state, stat: {...state.stat, skills: action.val}};}
-        case (actionTypes.UPDATE_LANGUAGES): {return {...state, stat: {...state.stat, languages: action.val}};}
-        case (actionTypes.UPDATE_ALIGNMENT): {return {...state, stat: {...state.stat, alignment: action.val}};}
-        case (actionTypes.UPDATE_STR): {return {...state, stat: {...state.stat, str: action.val}};}
-        case (actionTypes.UPDATE_CON): {return {...state, stat: {...state.stat, con: action.val}};}
-        case (actionTypes.UPDATE_DEX): {return {...state, stat: {...state.stat, dex: action.val}};}
-        case (actionTypes.UPDATE_INT): {return {...state, stat: {...state.stat, int: action.val}};}
-        case (actionTypes.UPDATE_WIS): {return {...state, stat: {...state.stat, wis: action.val}};}
-        case (actionTypes.UPDATE_CHA): {return {...state, stat: {...state.stat, cha: action.val}};}
-        case (actionTypes.UPDATE_SAVE): {return {...state, stat: {...state.stat, save: action.val}};}
-        case (actionTypes.UPDATE_AP): {return {...state, stat: {...state.stat, ap: action.val}};}
+        case (actionTypes.SET_NAME): {return {...state, stat: {...state.stat, name: action.val}};}
         
+        case (actionTypes.SET_LEVEL): {return {...state, level: action.val};}
         
+        case (actionTypes.SET_THREAT): {return {...state, threat: action.val};}
+        
+        case (actionTypes.SET_ROLE): {return {...state, role: action.val};}
+        
+        case (actionTypes.SET_LEADER): {return {...state, leader: action.val};}
+        
+        case (actionTypes.CREATE_MONSTER): {return create(state);}
+        
+        case (actionTypes.UPDATE_STAT): {return {...state, stat: {...state.stat, [action.name]: action.val}};}
         
         default:
              return state;

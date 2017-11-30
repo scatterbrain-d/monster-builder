@@ -2,18 +2,20 @@ import React from "react";
 
 const statBox = (props) => {
     
-    let boxType;
+    let boxType, updateType;
     
     if(typeof(props.value) === "number") {
         boxType = "number";
+        updateType= props.numUpdate
     } else {
         boxType = "text";
+        updateType= props.strUpdate
     }
     
     return (
             <div id={props.name}>
-                <p>{props.name}</p>
-                <input type={boxType} onChange={props.update} value={props.value}/>
+                <label>{props.name}</label>
+                <input type={boxType} onChange={updateType} value={props.value}/>
             </div>
         );
 };
