@@ -5,3 +5,6 @@ export const SET_ROLE = "SET_ROLE";
 export const SET_LEADER = "SET_LEADER";
 export const CREATE_MONSTER = "CREATE_MONSTER";
 export const UPDATE_STAT = "UPDATE_STAT";
+export const ADD_POWER = "ADD_POWER";
+export const PUSH_POWER = "PUSH_POWER";
+export const SET_POWER_NAME = "SET_POWER_NAME";

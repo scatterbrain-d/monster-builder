@@ -1,9 +1,19 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+
+import Aux from "../../hoc/Aux/Aux";
 import StatBox from "../../components/StatBox";
+import Power from "../../components/Power/Power";
+import PowerModal from "../PowerModal/PowerModal";
 import * as actionTypes from "../../store/actions";
 
 class Builder extends Component {
+    
+    state = {
+        powerModal: false
+    }
+    
+    powerEntryHandler = () => this.setState({showPowerModal: !this.state.showPowerModal});
 
     render() {
         
@@ -16,25 +26,61 @@ class Builder extends Component {
             });
         }
         
+        const powerArray = [];
+        
+        for (let key of Object.keys(this.props.powers)) {
+        powerArray.push(this.props.powers[key]);
+        console.log("power array", powerArray);
+        }
         
         return (
-            <div id="statBlock">
-                {statArray.map(stat => (
-                    <StatBox
-                        key={stat.name}
-                        name={stat.name}
-                        value={stat.value}
-                        strUpdate={(event) => this.props.onUpdateStat(stat.name, event.target.value)}
-                        numUpdate={(event) => this.props.onUpdateStat(stat.name, Number(event.target.value))}
-                    />
+            <Aux>
+                <div id="statBlock">
+                    {statArray.map(stat => (
+                        <StatBox
+                            key={stat.name}
+                            name={stat.name}
+                            value={stat.value}
+                            strUpdate={(event) => this.props.onUpdateStat(stat.name, event.target.value)}
+                            numUpdate={(event) => this.props.onUpdateStat(stat.name, Number(event.target.value))}
+                        />
+                    ))}
+                    
+                </div>
+                {powerArray.map(power => (
+                        <Power
+                            key={power.name}
+                            name={power.name}
+                            action={power.action}
+                            use={power.use}
+                            basic={power.basic}
+                            target={power.target}
+                            area={power.area}
+                            range={power.range}
+                            keywords={power.keywords}
+                            text={power.text}
+                            config={power.config}
+                        />
                 ))}
-            </div>
+                <button onClick={this.powerEntryHandler}>Add Power</button>
+                <PowerModal
+                    show={this.state.showPowerModal}
+                    modalClosed={this.powerEntryHandler}
+                    index={this.props.powerCount}
+                    damage={this.props.damage}
+                />
+            </Aux>
         );    
     }
 }
 
 const mapStateToProps = state => {
     return {
+        damage: state.damage,
+        attackAc: state.attackAc,
+        attackNad: state.attackNad,
+        powerCount: state.powerCount,
+        powers: state.powers,
         stat: {
             name: state.stat.name,
             keywords: state.stat.keywords,
@@ -65,6 +111,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onUpdateStat: (name, value) => dispatch({type: actionTypes.UPDATE_STAT, name: name, val: value}),
+        onAddPower: () => dispatch({type: actionTypes.ADD_POWER})
     };
 };
 

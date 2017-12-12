@@ -8,6 +8,8 @@ const initialState = {
         damage:9,
         attackAc:6,
         attackNad:4,
+        powerCount:0,
+        powers: {},
         stat: {
             name:"",
             keywords:"",
@@ -152,20 +154,37 @@ const create = (state) => {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case (actionTypes.SET_NAME): {return {...state, stat: {...state.stat, name: action.val}};}
+        case (actionTypes.SET_NAME): {return {...state, stat: {...state.stat, name: action.val}}}
         
-        case (actionTypes.SET_LEVEL): {return {...state, level: action.val};}
+        case (actionTypes.SET_LEVEL): {return {...state, level: action.val}}
         
-        case (actionTypes.SET_THREAT): {return {...state, threat: action.val};}
+        case (actionTypes.SET_THREAT): {return {...state, threat: action.val}}
         
-        case (actionTypes.SET_ROLE): {return {...state, role: action.val};}
+        case (actionTypes.SET_ROLE): {return {...state, role: action.val}}
         
-        case (actionTypes.SET_LEADER): {return {...state, leader: action.val};}
+        case (actionTypes.SET_LEADER): {return {...state, leader: action.val}}
         
-        case (actionTypes.CREATE_MONSTER): {return create(state);}
+        case (actionTypes.CREATE_MONSTER): {return create(state)}
         
-        case (actionTypes.UPDATE_STAT): {return {...state, stat: {...state.stat, [action.name]: action.val}};}
+        case (actionTypes.UPDATE_STAT): {return {...state, stat: {...state.stat, [action.name]: action.val}}}
         
+        case (actionTypes.ADD_POWER): {console.log(state); return {...state,  powers: {...state.powers}}}
+        
+        case (actionTypes.PUSH_POWER): {
+            const newState = {...state, powerCount: state.powerCount + 1, powers: {...state.powers}}
+            newState.powers[state.powerCount] = {...action.object};
+            console.log(newState.powers);
+            console.log(newState);
+            // newState.powers.push(...action.object);
+            // console.log(newState);
+            return newState;
+        }
+        
+        // case (actionTypes.SET_POWER_NAME): {console.log(action.idx, action.val);
+        //     const newState = {...state, powers: [...state.powers]};
+        //     newState.powers[action.idx].name = action.val;
+        //     return newState;
+        // }
         default:
              return state;
     }
