@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-import * as actionTypes from "../../store/actions";
+import * as actions from "../../store/actions/index";
 
 class Landing extends Component {
     
@@ -15,13 +15,15 @@ class Landing extends Component {
     render() {
         return (
             <div id="landing">
+                <div>
+                    <h1>D&D Monster Builder</h1>
+                </div>
                 <form id="creationForm" onSubmit={this.onSubmitHandler}>
                     <div className="formInput">
                         <label>Name</label>
                         <input 
-                            type="text" 
                             value={this.props.name} 
-                            onChange={(event) => this.props.onSetName(event.target.value)} 
+                            onChange={(event) => this.props.onUpdateStat("name", event.target.value)} 
                         />
                     </div>
                     
@@ -30,7 +32,7 @@ class Landing extends Component {
                         <input 
                             type="number" 
                             value={this.props.level} 
-                            onChange={(event) => this.props.onSetLevel(Number(event.target.value))} 
+                            onChange={(event) => this.props.onSetBaseStat("level", Number(event.target.value))} 
                             max="35" 
                             min="1"
                         />
@@ -39,7 +41,7 @@ class Landing extends Component {
                         <label>Threat</label>
                         <select 
                             value={this.props.threat} 
-                            onChange={(event) => this.props.onSetThreat(event.target.value)}
+                            onChange={(event) => this.props.onSetBaseStat("threat", event.target.value)}
                         >
                             <option>Standard</option>
                             <option>Minion</option>
@@ -51,7 +53,7 @@ class Landing extends Component {
                         <label>Role</label>
                         <select 
                             value={this.props.role} 
-                            onChange={(event) => this.props.onSetRole(event.target.value)}
+                            onChange={(event) => this.props.onSetBaseStat("role", event.target.value)}
                         >
                             <option>Soldier</option>
                             <option>Skirmisher</option>
@@ -62,12 +64,18 @@ class Landing extends Component {
                         </select>
                     </div>
                     <div className="formInput">
-                        <label>Leader</label>
-                        <input 
-                            type="checkbox" 
-                            value={this.props.leader} 
-                            onChange={(event) => this.props.onSetLeader(event.target.value)}
-                        />
+                        <label>Size</label>
+                        <select 
+                            value={this.props.size} 
+                            onChange={(event) => this.props.onSetBaseStat("size", event.target.value)}
+                        >
+                            <option>Tiny</option>
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                            <option>Huge</option>
+                            <option>Colossal</option>
+                        </select>
                     </div>
                     <div className="formInput">
                         <button>Submit</button>
@@ -83,18 +91,15 @@ const mapStateToProps = state => {
         level: state.level,
         threat: state.threat,
         role: state.role,
-        leader: state.leader
+        size: state.size
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetName: (value) => dispatch({type: actionTypes.SET_NAME, val: value}),
-        onSetLevel: (value) => dispatch({type: actionTypes.SET_LEVEL, val: value}),
-        onSetThreat: (value) => dispatch({type: actionTypes.SET_THREAT, val: value}),
-        onSetRole: (value) => dispatch({type: actionTypes.SET_ROLE, val: value}),
-        onSetLeader: (value) => dispatch({type: actionTypes.SET_LEADER, val: value}),
-        onCreateMonster: () => dispatch({type: actionTypes.CREATE_MONSTER})
+        onUpdateStat: (name, value) => dispatch(actions.updateStat(name, value)),
+        onSetBaseStat: (name, value) => dispatch(actions.setBaseStat(name, value)),
+        onCreateMonster: () => dispatch(actions.createMonster())
     };
 };
 

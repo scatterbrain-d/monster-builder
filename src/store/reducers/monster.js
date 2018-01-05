@@ -1,10 +1,12 @@
-import * as actionTypes from "./actions";
+import * as actionTypes from "../actions/actionTypes";
+
+//img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR40uexBQH3kdPstpwjgj1dzVDQOwzmt82-VJD7qQWPTQb1X42L5A",
 
 const initialState = {
         level:1,
-        threat:"",
-        role:"",
-        leader:false,
+        threat:"Standard",
+        role:"Soldier",
+        size:"Medium",
         damage:9,
         attackAc:6,
         attackNad:4,
@@ -12,13 +14,14 @@ const initialState = {
         powers: {},
         stat: {
             name:"",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR40uexBQH3kdPstpwjgj1dzVDQOwzmt82-VJD7qQWPTQb1X42L5A",
             keywords:"",
             hp:25,
             ac:16,
             fort:13,
             ref:13,
             will:13,
-            speed:6,
+            speed:"walk 6",
             initiative:1,
             resist:"",
             senses:"none",
@@ -49,6 +52,12 @@ const create = (state) => {
     let newSpeed = 6;
     let newSave = "";
     let newAp = 0;
+    let newStr = 10 + (1 + Math.floor(state.level/10));
+    let newCon = 10 + (1 + Math.floor(state.level/10));
+    let newDex = 10 + (1 + Math.floor(state.level/10));
+    let newInt = 10 + (1 + Math.floor(state.level/10));
+    let newWis = 10 + (1 + Math.floor(state.level/10));
+    let newCha = 10 + (1 + Math.floor(state.level/10));
     
     switch(state.role) {
         case("Soldier"): 
@@ -57,6 +66,10 @@ const create = (state) => {
                 newDamage = 1 + Math.floor(newDamage *0.75);
                 newAc += 3;
                 newRef += 1;
+                newStr += (2 + Math.floor(state.level/4));
+                newCon += 2;
+                newDex += 2;
+                newCha += (2 + Math.floor(state.level/4));
             break;
         case("Skirmisher"): 
                 newAc += 1;
@@ -64,6 +77,9 @@ const create = (state) => {
                 newRef += 3;
                 newSpeed += 1 + Math.floor(state.level/10);
                 newInit = 1 + Math.floor(newInit*1.5);
+                newStr += 2;
+                newDex += (4 + Math.floor(state.level/4));
+                newInt += 2;
             break;
         case("Brute"):
                 newAttackAc -= 1;
@@ -75,12 +91,21 @@ const create = (state) => {
                 newRef -= 2;
                 newWill -= 1;
                 newInit = 1 + Math.floor(newInit * 0.75);
+                newStr += (4 + Math.floor(state.level/4));
+                newCon += (4 + Math.floor(state.level/4));
+                newDex -= 4;
+                newInt -= 4;
             break;
         case("Artillery"):
                 newHp = 1 + Math.floor(newHp * 0.75);
                 newFort -= 1;
                 newRef += 2;
                 newWill += 1;
+                newStr -= 2;
+                newDex += (4 + Math.floor(state.level/4));
+                newInt += 2;
+                newWis += 2;
+                newCha += 2;
             break;
         case("Lurker"):
                 newDamage = 1 + Math.floor(newDamage * 1.25);
@@ -89,11 +114,19 @@ const create = (state) => {
                 newRef += 2;
                 newSpeed += 1 + Math.floor(state.level/10);
                 newInit = 1 + Math.floor(newInit*1.5);
+                newStr += 2;
+                newCon -=2;
+                newDex += (4 + Math.floor(state.level/4));
+                newInt += (2 + Math.floor(state.level/4));
             break;
         case("Controller"):
                 newFort -= 2;
                 newRef += 1;
                 newWill+= 2;
+                newCon -= 2;
+                newInt += (4 + Math.floor(state.level/4));
+                newWis += (2 + Math.floor(state.level/4));
+                newCha += (2 + Math.floor(state.level/4));
             break;
         default: 
                 newAttackAc += 2;
@@ -145,7 +178,13 @@ const create = (state) => {
             initiative: newInit,
             speed: newSpeed,
             save: newSave,
-            ap: newAp
+            ap: newAp,
+            str: newStr,
+            con: newCon,
+            dex: newDex,
+            int: newInt,
+            wis: newWis,
+            cha: newCha
         }
         
     };
@@ -162,7 +201,9 @@ const reducer = (state = initialState, action) => {
         
         case (actionTypes.SET_ROLE): {return {...state, role: action.val}}
         
-        case (actionTypes.SET_LEADER): {return {...state, leader: action.val}}
+        case (actionTypes.SET_SIZE): {return {...state, size: action.val}}
+        
+        case (actionTypes.SET_BASE_STAT): {return {...state, [action.name]: action.val}}
         
         case (actionTypes.CREATE_MONSTER): {return create(state)}
         
@@ -171,20 +212,11 @@ const reducer = (state = initialState, action) => {
         case (actionTypes.ADD_POWER): {console.log(state); return {...state,  powers: {...state.powers}}}
         
         case (actionTypes.PUSH_POWER): {
-            const newState = {...state, powerCount: state.powerCount + 1, powers: {...state.powers}}
+            const newState = {...state, powerCount: state.powerCount + 1, powers: {...state.powers}};
             newState.powers[state.powerCount] = {...action.object};
-            console.log(newState.powers);
-            console.log(newState);
-            // newState.powers.push(...action.object);
-            // console.log(newState);
             return newState;
         }
         
-        // case (actionTypes.SET_POWER_NAME): {console.log(action.idx, action.val);
-        //     const newState = {...state, powers: [...state.powers]};
-        //     newState.powers[action.idx].name = action.val;
-        //     return newState;
-        // }
         default:
              return state;
     }
