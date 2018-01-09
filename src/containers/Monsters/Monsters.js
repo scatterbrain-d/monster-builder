@@ -11,6 +11,12 @@ class Monsters extends Component {
         this.props.onFetchMonsters(this.props.token, this.props.userId);
     }
     
+    selectMonsterHandler = (monster, id) => {
+        console.log("monster selected:", monster, id);
+        this.props.onLoadMonster(monster);
+        this.props.onLoadMonsterId(id);
+    }
+    
     render(){
         let monsters = <Spinner/>;
         
@@ -24,6 +30,7 @@ class Monsters extends Component {
                             level={entry.monster.level}
                             role={entry.monster.role}
                             threat={entry.monster.threat}
+                            clicked={() => this.selectMonsterHandler(entry.monster, entry.id)}
                         />
                     ))}
                 </div>    
@@ -43,7 +50,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchMonsters: (token, userId) => dispatch(actions.fetchMonsters(token, userId))
+        onFetchMonsters: (token, userId) => dispatch(actions.fetchMonsters(token, userId)),
+        onLoadMonster: (monster) => dispatch(actions.loadMonster(monster)),
+        onLoadMonsterId: (id) => dispatch(actions.loadMonsterId(id))
     };
 };
 

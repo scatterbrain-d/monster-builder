@@ -3,7 +3,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
     monsters: [],
     loading: false,
-    saved: false
+    saved: false,
+    monsterId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +17,8 @@ const reducer = (state = initialState, action) => {
         }
         
         case (actionTypes.SAVE_FAIL): {return {...state, loading: false}}
+        
+        case (actionTypes.LOAD_MONSTER_ID): {return {...state, monsterId: action.monsterId}}
         
         case (actionTypes.FETCH_MONSTERS_START): {return {...state, loading: true}}
         

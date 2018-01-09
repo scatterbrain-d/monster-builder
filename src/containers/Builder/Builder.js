@@ -22,8 +22,11 @@ class Builder extends Component {
             monster: this.props.monster,
             userId: this.props.userId
         };
-        console.log(this.props.token);
-        this.props.onSaveMonster(monster, this.props.token);
+        
+        if(this.props.monsterId === null)
+            this.props.onSaveMonster(monster, this.props.token);
+        else
+            this.props.onUpdateMonster(monster, this.props.token, this.props.monsterId);
     }
     
     modeToggleHandler = () => {
@@ -114,7 +117,8 @@ const mapStateToProps = state => {
         powers: state.monster.powers,
         stat: state.monster.stat,
         userId: state.auth.userId,
-        token: state.auth.token
+        token: state.auth.token,
+        monsterId: state.save.monsterId
     };
 };
 
@@ -122,7 +126,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onUpdateStat: (name, value) => dispatch(actions.updateStat(name, value)),
         onAddPower: () => dispatch(actions.addPower()),
-        onSaveMonster: (monster, token) => dispatch(actions.saveMonster(monster, token))
+        onSaveMonster: (monster, token) => dispatch(actions.saveMonster(monster, token)),
+        onUpdateMonster: (monster, token, id) => dispatch(actions.updateMonster(monster, token, id))
     };
 };
 

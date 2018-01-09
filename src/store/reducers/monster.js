@@ -217,6 +217,9 @@ const reducer = (state = initialState, action) => {
             return newState;
         }
         
+        case (actionTypes.LOAD_MONSTER): {
+            return {...state, ...action.monster}}
+        
         default:
              return state;
     }

@@ -35,3 +35,11 @@ export const pushPower = (power, index) => {
         index: index
     };
 };
+
+export const loadMonster = (monster) => {
+    return {
+        type: actionTypes.LOAD_MONSTER,
+        monster: monster
+    };
+};
+

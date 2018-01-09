@@ -35,6 +35,26 @@ export const saveMonster = (monster, token) => {
     };    
 };
 
+export const loadMonsterId = (id) => {
+    return {
+        type: actionTypes.LOAD_MONSTER_ID,
+        monsterId: id
+    };
+};
+
+export const updateMonster = (monster, token, id) => {
+    return dispatch => {
+        dispatch(saveStart());
+        axios.patch("/monsters/" + id + ".json?auth=" +token, monster)
+            .then(response => {
+                dispatch(saveSuccess(response.data.name, monster));
+            })
+            .catch(error => {
+                dispatch(saveFail(error));
+            });
+    };
+};
+
 export const fetchMonstersSuccess = (monsters) => {
     return {
         type: actionTypes.FETCH_MONSTERS_SUCCESS,
@@ -68,6 +88,7 @@ export const fetchMonsters = (token, userId) => {
                         id: key
                     });
                 }
+                console.log(fetchedMonsters);
                 dispatch(fetchMonstersSuccess(fetchedMonsters));
             })
             .catch(error => {
