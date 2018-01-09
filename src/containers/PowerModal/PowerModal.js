@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-import Backdrop from "../../components/Backdrop/Backdrop";
+import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Aux from "../../hoc/Aux/Aux";
 import * as actions from "../../store/actions/index";
 

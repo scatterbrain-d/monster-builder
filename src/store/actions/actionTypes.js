@@ -12,3 +12,13 @@ export const SET_BASE_STAT = "SET_BASE_STAT";
 export const SAVE_START = "SAVE_START";
 export const SAVE_SUCCESS = "SAVE_SUCCESS";
 export const SAVE_FAIL = "SAVE_FAIL";
+
+export const AUTH_START = "AUTH_START";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAIL = "AUTH_FAIL";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
+
+export const FETCH_MONSTERS_START = "FETCH_MONSTERS_START";
+export const FETCH_MONSTERS_SUCCESS = "FETCH_MONSTERS_SUCCESS";
+export const FETCH_MONSTERS_FAIL = "FETCH_MONSTERS_FAIL";
+export const FETCH_MONSTERS = "FETCH_MONSTERS";

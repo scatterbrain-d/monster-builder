@@ -10,10 +10,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import monsterReducer from "./store/reducers/monster";
 import saveReducer from "./store/reducers/save";
+import authReducer from "./store/reducers/auth";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const rootReducer = combineReducers({monster: monsterReducer, save: saveReducer});
+const rootReducer = combineReducers({monster: monsterReducer, save: saveReducer, auth: authReducer});
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 

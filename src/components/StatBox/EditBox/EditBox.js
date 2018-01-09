@@ -1,21 +1,21 @@
 import React from "react";
 
-const statBox = (props) => {
+const editBox = (props) => {
     
-    let boxType, updateType, content;
+    let dataType, updateType, content;
     
     if(typeof(props.value) === "number") {
-        boxType = "number";
+        dataType = "number";
         updateType= props.numUpdate;
     } else {
-        boxType = "text";
+        dataType = "text";
         updateType= props.strUpdate;
     }
     
     if (props.name === "img") 
         content = <img alt="your monster" src={props.value}/>;
     else
-        content = <input type={boxType} onChange={updateType} value={props.value}/>;
+        content = <input type={dataType} onChange={updateType} value={props.value}/>;
     
     return (
             <div id={props.name}>
@@ -25,4 +25,4 @@ const statBox = (props) => {
         );
 };
 
-export default statBox;
+export default editBox;

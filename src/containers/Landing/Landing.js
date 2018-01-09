@@ -88,10 +88,10 @@ class Landing extends Component {
 
 const mapStateToProps = state => {
     return {
-        level: state.level,
-        threat: state.threat,
-        role: state.role,
-        size: state.size
+        level: state.monster.level,
+        threat: state.monster.threat,
+        role: state.monster.role,
+        size: state.monster.size
     };
 };
 

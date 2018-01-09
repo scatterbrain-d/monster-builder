@@ -17,6 +17,13 @@ const reducer = (state = initialState, action) => {
         
         case (actionTypes.SAVE_FAIL): {return {...state, loading: false}}
         
+        case (actionTypes.FETCH_MONSTERS_START): {return {...state, loading: true}}
+        
+        case (actionTypes.FETCH_MONSTERS_SUCCESS): {
+            return {...state, monsters: action.monsters, loading: false}}
+        
+        case (actionTypes.FETCH_MONSTERS_FAIL): {return {...state, loading: false}}
+        
         default: return {...state};
     }
 };
