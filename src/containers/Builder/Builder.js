@@ -10,14 +10,15 @@ import * as actions from "../../store/actions/index";
 class Builder extends Component {
     
     state = {
-        powerModal: false,
-        editMode: true
+        showPowerModal: false,
+        editMode: true,
+        newPower: true,
+        powerToUpdate: {}
     }
     
-    powerEntryHandler = () => this.setState({showPowerModal: !this.state.showPowerModal});
+    powerEntryHandler = () => this.setState({showPowerModal: !this.state.showPowerModal, newPower: true});
     
     saveMonsterHandler = () => {
-        
         const monster = {
             monster: this.props.monster,
             userId: this.props.userId
@@ -32,6 +33,14 @@ class Builder extends Component {
     modeToggleHandler = () => {
         this.setState((prevState) => {
             return {editMode: !prevState.editMode};
+        });
+    }
+    
+    powerUpdateHandler = (power) => {
+        this.setState({
+            showPowerModal: true,
+            newPower: false,
+            powerToUpdate: power
         });
     }
 
@@ -67,34 +76,31 @@ class Builder extends Component {
                                 numUpdate={(event) => this.props.onUpdateStat(stat.name, Number(event.target.value))}
                             />
                         ))}
-                    <div id="statFooter">
-                    
+                        <div id="statFooter">
+                        
+                        </div>
                     </div>
-                </div>
                     
-                    
-                    {powerArray.map(power => (
-                            <Power
-                                key={power.name}
-                                name={power.name}
-                                action={power.action}
-                                use={power.use}
-                                basic={power.basic}
-                                target={power.target}
-                                area={power.area}
-                                range={power.range}
-                                keywords={power.keywords}
-                                text={power.text}
-                            />
-                    ))}
-                    
-                    <button id="addPower" onClick={this.powerEntryHandler}>Add Power</button>
                     <PowerModal
                         show={this.state.showPowerModal}
+                        new={this.state.newPower}
                         modalClosed={this.powerEntryHandler}
                         index={this.props.powerCount}
                         damage={this.props.damage}
+                        power={this.state.powerToUpdate}
                     />
+
+                    {powerArray.map(power => {
+                    return (
+                            <Power
+                                key={power.name}
+                                power={power}
+                                update={(power) => this.powerUpdateHandler(power)}
+                            />
+                    )})}
+                    
+                    <button id="addPower" onClick={this.powerEntryHandler}>Add Power</button>
+                    
                     <button onClick={this.modeToggleHandler}>
                         {this.state.editMode ? "DISPLAY" : "EDIT"}
                     </button>

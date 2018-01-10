@@ -7,30 +7,30 @@ const power = (props) => {
 
     let attackType;
     
-    switch (props.target) {
+    switch (props.power.target) {
         case "Melee":
         case "Ranged":
         case "Line":
             attackType = (
-                    <div>
-                        {props.target} {props.range}
-                    </div>
+                    <span>
+                        {props.power.target} {props.power.range}
+                    </span>
                 );
         break;
         case "Close Burst":
         case "Close Blast":
         case "Aura":
             attackType = (
-                    <div>
-                        {props.target} {props.area}
-                    </div>
+                    <span>
+                        {props.power.target} {props.power.area}
+                    </span>
                 );
         break;
         case "Area Burst":
             attackType = (
-                    <div>
-                        {props.target} {props.area} in {props.range}
-                    </div>
+                    <span>
+                        {props.power.target} {props.power.area} in {props.power.range}
+                    </span>
                 );
         break;
         default:
@@ -41,14 +41,15 @@ const power = (props) => {
     return (
         <div className="powerBox">
             <div className="powerHeader">
-                {props.name} * {props.use}  <span className="rightJustify">{props.action} action</span>
+                {props.power.name} * {props.power.use}  <span className="rightJustify">{props.power.action} action</span>
             </div>
-                {attackType} | {props.keywords}
+                <p>{attackType} | {props.power.keywords}</p>
             <div>
-                {props.text}
+                {props.power.text}
             </div>
+            <button onClick={props.update}>Edit</button>
         </div>
     );
-}
+};
     
 export default power;

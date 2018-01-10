@@ -7,7 +7,8 @@ export const CREATE_MONSTER = "CREATE_MONSTER";
 export const UPDATE_STAT = "UPDATE_STAT";
 export const ADD_POWER = "ADD_POWER";
 export const PUSH_POWER = "PUSH_POWER";
-export const SET_POWER_NAME = "SET_POWER_NAME";
+export const UPDATE_POWER = "UPDATE_POWER";
+
 export const SET_BASE_STAT = "SET_BASE_STAT";
 export const SAVE_START = "SAVE_START";
 export const SAVE_SUCCESS = "SAVE_SUCCESS";

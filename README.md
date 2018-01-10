@@ -1,3 +1,14 @@
+## D&D Monster Builder
+
+This app was designed to make custom monsters for D&D(4th edition). Features include:
+
+- Single page format with React
+- State management via Redux
+- Responsive styling
+- Authentication and database via Firebase
+- Sharing creations with other users
+- "Battle mode" for use during a game
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

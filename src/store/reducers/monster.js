@@ -212,8 +212,15 @@ const reducer = (state = initialState, action) => {
         case (actionTypes.ADD_POWER): {console.log(state); return {...state,  powers: {...state.powers}}}
         
         case (actionTypes.PUSH_POWER): {
+            console.log("powerCount:", state.powerCount);
             const newState = {...state, powerCount: state.powerCount + 1, powers: {...state.powers}};
             newState.powers[state.powerCount] = {...action.object};
+            return newState;
+        }
+        
+        case (actionTypes.UPDATE_POWER): {
+            const newState = {...state, powers: {...state.powers}};
+            newState.powers[action.object.index] = {...action.object};
             return newState;
         }
         

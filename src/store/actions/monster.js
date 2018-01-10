@@ -28,11 +28,18 @@ export const addPower = () => {
     };
 };
 
-export const pushPower = (power, index) => {
+export const pushPower = (power) => {
+    console.log(power);
     return {
         type: actionTypes.PUSH_POWER,
-        object: power,
-        index: index
+        object: power
+    };
+};
+
+export const updatePower = (power, index) => {
+    return {
+        type: actionTypes.UPDATE_POWER,
+        object: power
     };
 };
 

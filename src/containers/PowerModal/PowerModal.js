@@ -5,17 +5,7 @@ import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Aux from "../../hoc/Aux/Aux";
 import * as actions from "../../store/actions/index";
 
-let power = {
-    name: "",
-    action: "Standard",
-    use: "At-Will",
-    basic: false,
-    target: "Melee",
-    range: "",
-    area: "",
-    keywords: "",
-    text: ""
-};
+let power;
 
 class PowerModal extends Component {
     
@@ -23,9 +13,33 @@ class PowerModal extends Component {
         attackType: 1
     }
     
+    componentWillMount = () => {
+        if(!this.props.new)
+            power = this.props.power;
+        else {
+            power = {
+                name: "",
+                action: "Standard",
+                use: "At-Will",
+                basic: false,
+                target: "Melee",
+                range: "",
+                area: "",
+                keywords: "",
+                text: "",
+                index: this.props.index
+            };
+        }
+    }
+    
     submitHandler = (event, object) => {
         event.preventDefault();
-        this.props.onPushPower(object, this.props.index);
+        console.log(object);
+        
+        if(this.props.new)
+            this.props.onPushPower(object);
+        else
+            this.props.onUpdatePower(object);
         this.props.modalClosed();
     }
     
@@ -44,7 +58,7 @@ class PowerModal extends Component {
                 case "Area Burst":
                     return this.setState({attackType: 3});
                 default:
-                    return this.setState({attackType: 0});
+                    return this.setState({attackType: 1});
             }
         }
     }
@@ -189,7 +203,8 @@ class PowerModal extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onPushPower: (power, index) => dispatch(actions.pushPower(power, index))
+        onPushPower: (power) => dispatch(actions.pushPower(power)),
+        onUpdatePower: (power) => dispatch(actions.updatePower(power))
     };
 };
 
