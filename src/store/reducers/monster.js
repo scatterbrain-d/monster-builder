@@ -10,8 +10,7 @@ const initialState = {
         damage:9,
         attackAc:6,
         attackNad:4,
-        powerCount:0,
-        powers: {},
+        powers: [],
         stat: {
             name:"",
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR40uexBQH3kdPstpwjgj1dzVDQOwzmt82-VJD7qQWPTQb1X42L5A",
@@ -212,15 +211,11 @@ const reducer = (state = initialState, action) => {
         case (actionTypes.ADD_POWER): {console.log(state); return {...state,  powers: {...state.powers}}}
         
         case (actionTypes.PUSH_POWER): {
-            console.log("powerCount:", state.powerCount);
-            const newState = {...state, powerCount: state.powerCount + 1, powers: {...state.powers}};
-            newState.powers[state.powerCount] = {...action.object};
-            return newState;
-        }
-        
-        case (actionTypes.UPDATE_POWER): {
-            const newState = {...state, powers: {...state.powers}};
-            newState.powers[action.object.index] = {...action.object};
+            const newState = {...state, powers: [...state.powers]};
+            if (state.powers.length === action.index)
+                newState.powers.push(action.object);
+            else
+                newState.powers.splice(action.index, 1, action.object);
             return newState;
         }
         

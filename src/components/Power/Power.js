@@ -13,7 +13,7 @@ const power = (props) => {
         case "Line":
             attackType = (
                     <span>
-                        {props.power.target} {props.power.range}
+                        {props.power.range}
                     </span>
                 );
         break;
@@ -22,14 +22,14 @@ const power = (props) => {
         case "Aura":
             attackType = (
                     <span>
-                        {props.power.target} {props.power.area}
+                        {props.power.area}
                     </span>
                 );
         break;
         case "Area Burst":
             attackType = (
                     <span>
-                        {props.power.target} {props.power.area} in {props.power.range}
+                        {props.power.area} in {props.power.range}
                     </span>
                 );
         break;
@@ -43,7 +43,7 @@ const power = (props) => {
             <div className="powerHeader">
                 {props.power.name} * {props.power.use}  <span className="rightJustify">{props.power.action} action</span>
             </div>
-                <p>{attackType} | {props.power.keywords}</p>
+                <p>{props.power.target} {attackType} | {props.power.keywords}</p>
             <div>
                 {props.power.text}
             </div>

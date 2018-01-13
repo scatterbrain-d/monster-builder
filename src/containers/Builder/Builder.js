@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-// import Aux from "../../hoc/Aux/Aux";
 import StatBox from "../../components/StatBox/StatBox";
 import Power from "../../components/Power/Power";
 import PowerModal from "../PowerModal/PowerModal";
@@ -12,11 +11,28 @@ class Builder extends Component {
     state = {
         showPowerModal: false,
         editMode: true,
-        newPower: true,
-        powerToUpdate: {}
+        powerTemplate: {},
+        powerIndex: 0
     }
     
-    powerEntryHandler = () => this.setState({showPowerModal: !this.state.showPowerModal, newPower: true});
+    powerEntryHandler = () => {
+        // const index = this.props.powers ? this.props.power.length : 0;
+        this.setState({
+            showPowerModal: !this.state.showPowerModal,
+            powerIndex: this.props.powers.length,
+            powerTemplate: {
+                name: "",
+                action: "Standard",
+                use: "At-Will",
+                basic: false,
+                target: "Melee",
+                range: "",
+                area: "",
+                keywords: "",
+                text: ""
+            }
+        });
+    }
     
     saveMonsterHandler = () => {
         const monster = {
@@ -36,11 +52,12 @@ class Builder extends Component {
         });
     }
     
-    powerUpdateHandler = (power) => {
+    powerUpdateHandler = (power, index) => {
+        console.log(power);
         this.setState({
             showPowerModal: true,
-            newPower: false,
-            powerToUpdate: power
+            powerIndex: index,
+            powerTemplate: power
         });
     }
 
@@ -60,6 +77,19 @@ class Builder extends Component {
         for (let key of Object.keys(this.props.powers)) {
         powerArray.push(this.props.powers[key]);
         }
+        
+        let powerModal = null;
+        
+        if(this.state.showPowerModal)
+            powerModal = (
+                    <PowerModal
+                        show={this.state.showPowerModal}
+                        modalClosed={this.powerEntryHandler}
+                        index={this.state.powerIndex}
+                        damage={this.props.damage}
+                        power={this.state.powerTemplate}
+                    />
+                );
         
         return (
             <div className="builder">
@@ -81,21 +111,15 @@ class Builder extends Component {
                         </div>
                     </div>
                     
-                    <PowerModal
-                        show={this.state.showPowerModal}
-                        new={this.state.newPower}
-                        modalClosed={this.powerEntryHandler}
-                        index={this.props.powerCount}
-                        damage={this.props.damage}
-                        power={this.state.powerToUpdate}
-                    />
+                    {powerModal}
 
-                    {powerArray.map(power => {
+                    {powerArray.map((power, index) => {
+                    console.log("map:", power, index);
                     return (
                             <Power
                                 key={power.name}
                                 power={power}
-                                update={(power) => this.powerUpdateHandler(power)}
+                                update={() => this.powerUpdateHandler(power, index)}
                             />
                     )})}
                     

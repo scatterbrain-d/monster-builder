@@ -5,48 +5,31 @@ import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Aux from "../../hoc/Aux/Aux";
 import * as actions from "../../store/actions/index";
 
-let power;
-
 class PowerModal extends Component {
     
     state = {
-        attackType: 1
+        attackType: 1,
+        power: {}
     }
     
     componentWillMount = () => {
-        if(!this.props.new)
-            power = this.props.power;
-        else {
-            power = {
-                name: "",
-                action: "Standard",
-                use: "At-Will",
-                basic: false,
-                target: "Melee",
-                range: "",
-                area: "",
-                keywords: "",
-                text: "",
-                index: this.props.index
-            };
-        }
+        console.log(this.props.power);    
+        this.setState({power: this.props.power});
     }
     
     submitHandler = (event, object) => {
         event.preventDefault();
-        console.log(object);
-        
-        if(this.props.new)
-            this.props.onPushPower(object);
-        else
-            this.props.onUpdatePower(object);
+        this.props.onPushPower(object, this.props.index);
         this.props.modalClosed();
     }
     
     inputHandler = (event) => {
-        power[event.target.name] = event.target.value;
+        const newPower = {...this.state.power, [event.target.name]: event.target.value};
+        this.setState({power: newPower});
         if (event.target.name === "target") {
             switch (event.target.value) {
+                case "Self":
+                    return this.setState({attackType: 0});
                 case "Melee":
                 case "Ranged":
                 case "Line":
@@ -72,7 +55,7 @@ class PowerModal extends Component {
                         className="shortInput"
                         type="text"
                         name="range"
-                        placeholder="Range"
+                        value={this.state.power.range}
                         onChange={(event) => this.inputHandler(event)}
                     />
                 );
@@ -82,6 +65,7 @@ class PowerModal extends Component {
                         className="shortInput"
                         type="text"
                         name="area"
+                        value={this.state.power.area}
                         placeholder="Area"
                         onChange={(event) => this.inputHandler(event)}
                     />
@@ -101,26 +85,21 @@ class PowerModal extends Component {
                     </Aux>
                 );
             break;
-            default: attackRange = "";
+            default: attackRange = null;
         }
         
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
-                <div
-                    className="powerModal"
-                    style={{
-                        transform: this.props.show ? "translateY(0)" : "translateY(-100vh)",
-                        opacity: this.props.show ? "1" : "0"
-                    }}
-                >
+                <div className="powerModal">
                     <h2>Add Power</h2>
-                    <form onSubmit={(event) => this.submitHandler(event, power)}>
+                    <form onSubmit={(event) => this.submitHandler(event, this.state.power)}>
                         <div>
                             <label>Basic Attack</label>
                             <input 
                                 type="checkbox"
                                 name="basic"
+                                value={this.state.power.basic}
                                 onChange={(event) => this.inputHandler(event)}
                             />
                         </div>
@@ -129,13 +108,13 @@ class PowerModal extends Component {
                             <input
                                 type="text"
                                 name="name"
+                                value={this.state.power.name}
                                 onChange={(event) => this.inputHandler(event)}
-                                placeholder="Name"
                             />
                         </div>
                         <div>
                             <label>Action</label>
-                            <select name="action" defaultValue="Standard"
+                            <select name="action" value={this.state.power.action}
                                 onChange={(event) => this.inputHandler(event)}>
                                 <option>Standard</option>
                                 <option>Move</option>
@@ -149,7 +128,7 @@ class PowerModal extends Component {
                         </div>
                         <div>
                             <label>Use</label>
-                            <select name="use" defaultValue="At-Will"
+                            <select name="use" value={this.state.power.use}
                                 onChange={(event) => this.inputHandler(event)}>
                                 <option>At-Will</option>
                                 <option>Encounter</option>
@@ -163,7 +142,7 @@ class PowerModal extends Component {
                         </div>
                         <div>
                             <label>Range</label>
-                            <select name="target" defaultValue="Melee"
+                            <select name="target" value={this.state.power.target}
                                 onChange={(event) => this.inputHandler(event)}>
                                 <option>Melee</option>
                                 <option>Ranged</option>
@@ -172,6 +151,7 @@ class PowerModal extends Component {
                                 <option>Area Burst</option>
                                 <option>Aura</option>
                                 <option>Line</option>
+                                <option>Self</option>
                             </select>
                             {attackRange}
                         </div>
@@ -180,6 +160,7 @@ class PowerModal extends Component {
                             <input 
                                 type="text"
                                 name="keywords"
+                                value={this.state.power.keywords}
                                 onChange={(event) => this.inputHandler(event)}
                                 placeholder="Keywords"
                             />
@@ -188,6 +169,7 @@ class PowerModal extends Component {
                             <label>Power Text</label>
                             <textarea
                                 name="text"
+                                value={this.state.power.text}
                                 onChange={(event) => this.inputHandler(event)}
                                 placeholder={"suggested damage:" + this.props.damage}
                             ></textarea>
@@ -203,8 +185,7 @@ class PowerModal extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onPushPower: (power) => dispatch(actions.pushPower(power)),
-        onUpdatePower: (power) => dispatch(actions.updatePower(power))
+        onPushPower: (power, index) => dispatch(actions.pushPower(power, index))
     };
 };
 
