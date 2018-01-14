@@ -192,23 +192,15 @@ const create = (state) => {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case (actionTypes.SET_NAME): {return {...state, stat: {...state.stat, name: action.val}}}
-        
-        case (actionTypes.SET_LEVEL): {return {...state, level: action.val}}
-        
-        case (actionTypes.SET_THREAT): {return {...state, threat: action.val}}
-        
-        case (actionTypes.SET_ROLE): {return {...state, role: action.val}}
-        
-        case (actionTypes.SET_SIZE): {return {...state, size: action.val}}
         
         case (actionTypes.SET_BASE_STAT): {return {...state, [action.name]: action.val}}
         
-        case (actionTypes.CREATE_MONSTER): {return create(state)}
-        
         case (actionTypes.UPDATE_STAT): {return {...state, stat: {...state.stat, [action.name]: action.val}}}
         
-        case (actionTypes.ADD_POWER): {console.log(state); return {...state,  powers: {...state.powers}}}
+        case (actionTypes.CREATE_MONSTER): {return create(state)}
+        
+        case (actionTypes.LOAD_MONSTER): {
+            return {...state, ...action.monster}}
         
         case (actionTypes.PUSH_POWER): {
             const newState = {...state, powers: [...state.powers]};
@@ -219,8 +211,13 @@ const reducer = (state = initialState, action) => {
             return newState;
         }
         
-        case (actionTypes.LOAD_MONSTER): {
-            return {...state, ...action.monster}}
+        case (actionTypes.DELETE_POWER): {
+            const newState = {...state, powers: [...state.powers]};
+            newState.powers.splice(action.index, 1);
+            return newState;
+        }
+        
+        
         
         default:
              return state;

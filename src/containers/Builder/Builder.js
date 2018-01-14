@@ -16,7 +16,6 @@ class Builder extends Component {
     }
     
     powerEntryHandler = () => {
-        // const index = this.props.powers ? this.props.power.length : 0;
         this.setState({
             showPowerModal: !this.state.showPowerModal,
             powerIndex: this.props.powers.length,
@@ -60,7 +59,7 @@ class Builder extends Component {
             powerTemplate: power
         });
     }
-
+    
     render() {
         
         const statArray = [];
@@ -114,12 +113,12 @@ class Builder extends Component {
                     {powerModal}
 
                     {powerArray.map((power, index) => {
-                    console.log("map:", power, index);
                     return (
                             <Power
                                 key={power.name}
                                 power={power}
                                 update={() => this.powerUpdateHandler(power, index)}
+                                delete={() => this.props.onPowerDelete(index)}
                             />
                     )})}
                     
@@ -155,7 +154,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onUpdateStat: (name, value) => dispatch(actions.updateStat(name, value)),
-        onAddPower: () => dispatch(actions.addPower()),
+        onPowerDelete: (index) => dispatch(actions.deletePower(index)),
         onSaveMonster: (monster, token) => dispatch(actions.saveMonster(monster, token)),
         onUpdateMonster: (monster, token, id) => dispatch(actions.updateMonster(monster, token, id))
     };

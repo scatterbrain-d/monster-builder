@@ -22,18 +22,19 @@ export const createMonster = () => {
     };
 };
 
-export const addPower = () => {
-    return {
-        type: actionTypes.ADD_POWER
-    };
-};
-
 export const pushPower = (power, index) => {
     console.log(power, index);
     return {
         type: actionTypes.PUSH_POWER,
         object: power,
         index: index
+    };
+};
+
+export const deletePower = (index) => {
+    return {
+        type: actionTypes.DELETE_POWER,
+        index:index
     };
 };
 

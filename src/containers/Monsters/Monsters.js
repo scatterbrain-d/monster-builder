@@ -12,7 +12,6 @@ class Monsters extends Component {
     }
     
     selectMonsterHandler = (monster, id) => {
-        console.log("monster selected:", monster, id);
         this.props.onLoadMonster(monster);
         this.props.onLoadMonsterId(id);
     }
@@ -30,7 +29,8 @@ class Monsters extends Component {
                             level={entry.monster.level}
                             role={entry.monster.role}
                             threat={entry.monster.threat}
-                            clicked={() => this.selectMonsterHandler(entry.monster, entry.id)}
+                            load={() => this.selectMonsterHandler(entry.monster, entry.id)}
+                            delete={() => this.props.onDeleteMonster(this.props.token, entry.id)}
                         />
                     ))}
                 </div>    
@@ -52,7 +52,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchMonsters: (token, userId) => dispatch(actions.fetchMonsters(token, userId)),
         onLoadMonster: (monster) => dispatch(actions.loadMonster(monster)),
-        onLoadMonsterId: (id) => dispatch(actions.loadMonsterId(id))
+        onLoadMonsterId: (id) => dispatch(actions.loadMonsterId(id)),
+        onDeleteMonster: (token, id) => dispatch(actions.deleteMonster(token, id))
     };
 };
 

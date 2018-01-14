@@ -48,6 +48,7 @@ const power = (props) => {
                 {props.power.text}
             </div>
             <button onClick={props.update}>Edit</button>
+            <button onClick={props.delete}>Delete</button>
         </div>
     );
 };
