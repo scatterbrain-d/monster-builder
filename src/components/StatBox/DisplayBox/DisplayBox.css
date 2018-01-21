@@ -1,0 +1,190 @@
+p {
+  font-size: 1.5em;
+  margin: .5em auto 0 auto;
+}
+
+#size p, #keywords p,
+#threat p, #role p, #level p {
+  font-size: 1em;
+  margin: 2px;
+  color: white;
+  justify-self: end;
+}
+
+#name p {
+  margin: 0 2px;
+  color: white;
+}
+
+#img {
+  grid-column: 1 / 2;
+  grid-row: 1 / 8;
+}
+
+#img img {
+  width: auto;
+  height: auto;
+  max-height: 300px;
+  padding: 2px;
+  /*object-fit: cover;*/
+}
+
+#name {
+  grid-column: 2 / 9;
+  grid-row: 1 / 2;
+}
+
+#level {
+  grid-column: 9 / 11;
+  grid-row: 1 / 2;
+  text-align: right;
+  color: white;
+}
+
+#size {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  margin: 0;
+}
+
+#keywords {
+  grid-column: 3 / 9;
+  grid-row: 2 / 3;
+  margin: 0;
+}
+
+#threat {
+  grid-column: 9 / 10;
+  grid-row: 2 / 3;
+  margin: 0;
+}
+#role {
+  grid-column: 10 / 11;
+  grid-row: 2 / 3;
+  margin: 0;
+}
+
+#hp {
+  grid-column: 2 / 4;
+  grid-row: 3 / 4;
+}
+
+#ac p, #fort p, 
+#ref p, #will p {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: white;
+}
+
+
+#ac {
+  grid-column: 5 / 6;
+  grid-row: 3 / 4;
+}
+
+#fort {
+  grid-column: 6 / 7;
+  grid-row: 3 / 4;
+}
+
+#ref {
+  grid-column: 7 / 8;
+  grid-row: 3 / 4;
+}
+
+#will {
+  grid-column: 8 / 9;
+  grid-row: 3 / 4;
+}
+
+#initiative {
+  grid-column: 10 /11;
+  grid-row: 3 / 4;
+}
+
+#resist, #speed, #senses,
+#languages, #alignment, #skills {
+  font-size: 0.8em;
+}
+
+#resist {
+  grid-column: 2 / 10;
+  grid-row: 4 / 5;
+}
+
+#save {
+  grid-column: 10 /11;
+  grid-row: 4 / 5;
+}
+
+#speed {
+  grid-column: 2 / 10;
+  grid-row: 5 / 6;
+}
+
+#ap {
+  grid-column: 10 / 11;
+  grid-row: 5 / 6;
+}
+
+#senses {
+  grid-column: 2 / 5;
+  grid-row: 6 / 7;
+}
+
+#languages {
+  grid-column: 5 / 8;
+  grid-row: 6 / 7;
+}
+
+#alignment {
+  grid-column: 8 / 11;
+  grid-row: 6 / 7;
+}
+
+#skills {
+  grid-column: 2 / 5;
+  grid-row: 7 / 8;
+}
+
+#str, #con, #dex,
+#int, #wis, #cha {
+  margin: 2px;
+  font-size: 0.8em;
+  border: 1px solid black;
+}
+
+#str {
+  grid-column: 5 / 6;
+  grid-row: 7 / 8;
+}
+
+#con {
+  grid-column: 6 / 7;
+  grid-row: 7 / 8;
+}
+
+#dex {
+  grid-column: 7 / 8;
+  grid-row: 7 / 8;
+}
+
+#int {
+  grid-column: 8 / 9;
+  grid-row: 7 / 8;
+}
+
+#wis {
+  grid-column: 9 / 10;
+  grid-row: 7 / 8;
+}
+
+#cha {
+  grid-column: 10 / 11;
+  grid-row: 7 / 8;
+}
+
+.upper {
+  text-transform: uppercase;
+}

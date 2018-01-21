@@ -1,0 +1,96 @@
+.builder {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  /*background-image: url("http://www.tribality.com/wp-content/uploads/2014/10/underdark.jpg");*/
+  /*background-size: cover;*/
+}
+
+.container {
+  text-align: center;
+  padding-top: 20px;
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+
+.editBlock {
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+}
+
+.displayBlock {
+  grid-template-columns: repeat(10, 1fr); 
+  grid-template-rows: repeat(7, auto);
+  align-items: end;
+  text-align: left;
+  grid-template-areas: 
+    "img header header header header header header header header header"
+    "img header header header header header header header header header"
+    "img body   body   body   def    def    def    def    body   body"
+    "img body   body   body   body   body   body   body   body   body"
+    "img body   body   body   body   body   body   body   body   body"
+    "img footer footer footer footer footer footer footer footer footer"
+    "img footer footer footer footer footer footer footer footer footer"
+}
+
+.blockHeader {
+  grid-column: 2 / 11; 
+  grid-row: 1 / 3;
+  background-color: #0b3f00 !important;
+  color: white !important;
+}
+
+.blockFooter {
+  grid-column: 2 / 11; 
+  grid-row: 6 / 8;
+}
+
+.block {
+  max-height: 60%;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  display: grid;
+  background-color: #F2DDB8;
+  font-weight: bold;
+}
+
+.block>div {
+  /*border: 1px solid #422500;*/
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.block label {
+  padding: 1px;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  position: absolute;
+  left:0;
+  top: 0;
+  background-color: #422500;
+  color: white;
+}
+
+.editBlock input {
+  font-size: 1.5em;
+  text-align: center;
+  height: auto;
+  width: 100%;
+  padding-left: 0.5em;
+  color: #422500;
+}
+
+.addPower {
+  font-size: 2em;
+  width: 100%;
+  max-width: 800px;
+}
+
+.button {
+  width: 25%;
+  font-size: 1.5em;
+  margin: 10px;
+}

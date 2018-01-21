@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Monster from "../../components/Monster/Monster";
+import style from "./Monsters.css";
 
 class Monsters extends Component {
     
@@ -14,6 +16,12 @@ class Monsters extends Component {
     selectMonsterHandler = (monster, id) => {
         this.props.onLoadMonster(monster);
         this.props.onLoadMonsterId(id);
+        this.props.history.push("/builder");
+    }
+    
+    deleteMonsterHandler = (id) => {
+        this.props.onDeleteMonster(this.props.token, id);
+        // UPDATE MONSTER LIST SOMEHOW
     }
     
     render(){
@@ -21,16 +29,14 @@ class Monsters extends Component {
         
         if(!this.props.loading)
             monsters = (
-                <div>
+                <div className={style.container}>
+                    <h2>My Monsters</h2>
                     {this.props.monsters.map(entry => (
                         <Monster
                             key={entry.id}
                             stat={entry.monster.stat}
-                            level={entry.monster.level}
-                            role={entry.monster.role}
-                            threat={entry.monster.threat}
                             load={() => this.selectMonsterHandler(entry.monster, entry.id)}
-                            delete={() => this.props.onDeleteMonster(this.props.token, entry.id)}
+                            delete={() => this.deleteMonsterHandler(entry.id)}
                         />
                     ))}
                 </div>    
@@ -57,4 +63,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Monsters);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Monsters));

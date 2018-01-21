@@ -1,4 +1,25 @@
-.PowerBox {
-    border: 2px solid black;
-    box-shadow: 2px 2px 2px #333;
+.powerBox {
+  width: 80%;
+  margin: auto;
+  text-align: left;
+}
+
+.powerBox p {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 5px 15px;
+}
+
+.powerBox hr {
+  width: 95%;
+  align-self: center;
+}
+
+.powerHeader {
+  font-weight: bold;
+  color: white;
+  background-color: var(--darkbrown);
+  padding: 2px 10px;
+  display: flex;
+  justify-content: space-between;
 }

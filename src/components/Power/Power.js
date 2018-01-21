@@ -1,6 +1,6 @@
 import React from "react";
 
-
+import style from "./Power.css";import globalStyle from "../../global.css";
 
 
 const power = (props) => {
@@ -37,16 +37,19 @@ const power = (props) => {
         break;
     }
     
+    let attack = props.attack;
+    if(props.power.defense === "AC") attack += 2;
+    
 
     return (
-        <div className="powerBox">
-            <div className="powerHeader">
-                {props.power.name} * {props.power.use}  <span className="rightJustify">{props.power.action} action</span>
+        <div className={style.powerBox + " " + globalStyle.mainBorder}>
+            <div className={style.powerHeader}>
+                <span>{props.power.name} * {props.power.use}</span>  <span>{props.power.action} action</span>
             </div>
-                <p>{props.power.target} {attackType} | {props.power.keywords}</p>
-            <div>
-                {props.power.text}
-            </div>
+            <p>{props.power.target} {attackType}, +{attack} vs. {props.power.defense}</p>
+            <p>{props.power.keywords}</p>
+            <hr/>
+            <p>{props.power.text}</p>
             <button onClick={props.update}>Edit</button>
             <button onClick={props.delete}>Delete</button>
         </div>

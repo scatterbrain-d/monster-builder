@@ -1,4 +1,3 @@
-export const SET_BASE_STAT = "SET_BASE_STAT";
 export const CREATE_MONSTER = "CREATE_MONSTER";
 export const UPDATE_STAT = "UPDATE_STAT";
 

@@ -7,6 +7,7 @@ import Landing from "./containers/Landing/Landing";
 import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import Navbar from "./components/Navigation/Navbar/Navbar";
+import style from "./App.css";
 import * as actions from "./store/actions/index";
 
 const asyncMonsters = asyncComponent(() => {
@@ -48,7 +49,7 @@ class App extends Component {
     }
     
     return (
-      <div className="app">
+      <div className={style.app}>
         <Navbar
           isAuth={this.props.isAuthenticated}
         />

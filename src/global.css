@@ -1,0 +1,23 @@
+:root {
+    --darkbrown: #422500;
+    --medbrown: #965500;
+    --lightbrown: #F2DDB8;
+}
+
+.mainBorder {
+    border-top: 2px solid var(--medbrown);
+    border-left: 2px solid var(--medbrown);
+    border-right: 2px solid var(--darkbrown);
+    border-bottom: 2px solid var(--darkbrown);
+    border-radius: 4px;
+    box-shadow: inset 2px 2px var(--darkbrown), inset -2px -2px var(--medbrown);
+    background-color: var(--lightbrown);
+}
+
+.minorBorder {
+    border-top: 2px solid var(--medbrown);
+    border-left: 2px solid var(--medbrown);
+    border-right: 2px solid var(--darkbrown);
+    border-bottom: 2px solid var(--darkbrown);
+    border-radius: 3px;
+}

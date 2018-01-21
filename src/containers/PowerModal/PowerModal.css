@@ -1,0 +1,43 @@
+.powerModal {
+  background-color: white;
+  position: fixed;
+  width: 60%;
+  top: 20%;
+  left: 20%;
+  padding: 3%;
+  z-index: 100;
+}
+
+.powerModal div {margin: 5px;}
+
+.powerForm {
+  margin: auto;
+  width: 60%;
+  text-align: left;
+}
+
+.inputBlock {
+  margin: 0 5px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.inputBlock input[type="text"],
+.inputBlock select,
+.inputBlock textarea {
+  flex: 1 1 auto;
+}
+
+.powerForm label {
+  padding: 5px;
+  font-weight: bold;
+}
+
+.powerForm span {
+  margin: auto 3px;
+}
+
+.shortInput {
+  width: 50px;
+}

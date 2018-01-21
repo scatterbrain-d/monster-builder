@@ -1,0 +1,44 @@
+
+.container {
+    width: 60%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.fetchedMonster {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.fetchedMonster img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.monsterDesc {
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    color: #422500;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.monsterDesc h3 {
+    margin: 10px 0;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    margin: 10px;
+    width: 40%;
+    font-size: 1em;
+}

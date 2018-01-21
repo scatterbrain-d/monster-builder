@@ -1,0 +1,168 @@
+.box {
+  display: flex;
+}
+
+#name {
+  grid-column-start:1;
+  grid-column-end:11;
+  grid-row-start:1;
+  grid-row-end:3;
+}
+
+#initiative {
+  grid-column-start:11;
+  grid-column-end:13;
+  grid-row-start:1;
+  grid-row-end:3;
+}
+
+#level, #threat, #size, #role {
+  display: none;
+}
+
+#keywords {
+  grid-column-start:1;
+  grid-column-end:7;
+  grid-row-start:3;
+  grid-row-end:5;
+}
+
+#speed {
+  grid-column-start:7;
+  grid-column-end:11;
+  grid-row-start:3;
+  grid-row-end:5;
+}
+
+#ap {
+  grid-column-start:11;
+  grid-column-end:13;
+  grid-row-start:3;
+  grid-row-end:5;
+}
+
+#hp {
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:5;
+  grid-row-end:7;
+}
+
+#ac {
+  grid-column-start:3;
+  grid-column-end:5;
+  grid-row-start:5;
+  grid-row-end:7;
+}
+
+#fort {
+  grid-column-start:5;
+  grid-column-end:7;
+  grid-row-start:5;
+  grid-row-end:7;
+}
+
+#ref {
+  grid-column-start:7;
+  grid-column-end:9;
+  grid-row-start:5;
+  grid-row-end:7;
+}
+
+#will {
+  grid-column-start:9;
+  grid-column-end:11;
+  grid-row-start:5;
+  grid-row-end:7;
+}
+
+#save {
+  grid-column-start:11;
+  grid-column-end:13;
+  grid-row-start:5;
+  grid-row-end:7;
+}
+
+#resist {
+  grid-column-start:1;
+  grid-column-end:7;
+  grid-row-start:7;
+  grid-row-end:9;
+}
+
+#senses {
+  grid-column-start:7;
+  grid-column-end:10;
+  grid-row-start:7;
+  grid-row-end:9;
+}
+
+#languages {
+  grid-column-start:10;
+  grid-column-end:13;
+  grid-row-start:7;
+  grid-row-end:9;
+}
+
+#alignment {
+  grid-column-start:1;
+  grid-column-end:7;
+  grid-row-start:9;
+  grid-row-end:10;
+}
+
+#skills {
+  grid-column-start:7;
+  grid-column-end:13;
+  grid-row-start:9;
+  grid-row-end:10;
+}
+
+#str {
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#con {
+  grid-column-start:3;
+  grid-column-end:5;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#dex {
+  grid-column-start:5;
+  grid-column-end:7;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#int {
+  grid-column-start:7;
+  grid-column-end:9;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#wis {
+  grid-column-start:9;
+  grid-column-end:11;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#cha {
+  grid-column-start:11;
+  grid-column-end:13;
+  grid-row-start:10;
+  grid-row-end:11;
+}
+
+#img {
+  grid-column: 1 / 13;
+  grid-row: 11 / 12;
+}
+
+#img input {font-size: 0.75em;}

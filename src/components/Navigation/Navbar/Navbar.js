@@ -1,6 +1,8 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
+import style from "./Navbar.css";
+
 const navbar = (props) => {
     
     let auth = <NavLink to="/auth">Log in</NavLink>;
@@ -16,10 +18,10 @@ const navbar = (props) => {
             );
     }
     return (
-        <header className="navbar">
+        <header className={style.navbar}>
             <ul>
                 <li>
-                    <NavLink to="/" exact>Landing</NavLink>
+                    <NavLink to="/" exact>New Monster</NavLink>
                 </li>
                 <li>
                     <NavLink to="/builder">Builder</NavLink>

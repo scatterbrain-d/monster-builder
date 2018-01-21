@@ -1,13 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
 
-export const setBaseStat = (name,value) => {
-    return {
-        type: actionTypes.SET_BASE_STAT,
-        name: name,
-        val: value
-    };
-};
-
 export const updateStat = (name, value) => {
     return {
         type: actionTypes.UPDATE_STAT,

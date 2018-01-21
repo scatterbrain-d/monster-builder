@@ -1,10 +1,13 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import StatBox from "../../components/StatBox/StatBox";
 import Power from "../../components/Power/Power";
 import PowerModal from "../PowerModal/PowerModal";
 import * as actions from "../../store/actions/index";
+import style from "./Builder.css";
+import globalStyle from "../../global.css";
 
 class Builder extends Component {
     
@@ -27,6 +30,7 @@ class Builder extends Component {
                 target: "Melee",
                 range: "",
                 area: "",
+                defense: "AC",
                 keywords: "",
                 text: ""
             }
@@ -38,11 +42,12 @@ class Builder extends Component {
             monster: this.props.monster,
             userId: this.props.userId
         };
-        
+        console.log(this.props.monsterId);
         if(this.props.monsterId === null)
             this.props.onSaveMonster(monster, this.props.token);
         else
             this.props.onUpdateMonster(monster, this.props.token, this.props.monsterId);
+        this.props.history.push("/monsters");
     }
     
     modeToggleHandler = () => {
@@ -52,7 +57,6 @@ class Builder extends Component {
     }
     
     powerUpdateHandler = (power, index) => {
-        console.log(power);
         this.setState({
             showPowerModal: true,
             powerIndex: index,
@@ -90,11 +94,30 @@ class Builder extends Component {
                     />
                 );
         
+        let powerButton = this.state.editMode ? <button className={style.addPower} onClick={this.powerEntryHandler}>Add Power</button> 
+            : null;
+        
+        let saveButton = <button className={style.button} onClick={this.saveMonsterHandler}>Save</button>;
+        
+        if (this.props.token === null)
+            saveButton = <button className={style.button} onClick={() => this.props.history.push("/auth")}>Log in to Save</button>;
+        
         return (
-            <div className="builder">
-                <div className="container">
-
-                    <div id="editBlock">  
+            <div className={style.builder}>
+                <div className={style.container}>
+                    <h2>{this.state.editMode ? "Edit" : "View"} Monster</h2>
+                    <button className={style.button} onClick={this.modeToggleHandler}>
+                        {this.state.editMode ? "Display" : "Edit"}
+                    </button>
+                    <div className={
+                        style.block
+                        +" "+
+                        (this.state.editMode ? style.editBlock : style.displayBlock) 
+                        +" "+ 
+                        globalStyle.mainBorder}
+                    >
+                        <div className={style.blockHeader + " " + globalStyle.minorBorder}/>
+                        <div className={style.blockFooter + " " + globalStyle.minorBorder}/>
                         {statArray.map(stat => (
                             <StatBox
                                 key={stat.name}
@@ -105,9 +128,6 @@ class Builder extends Component {
                                 numUpdate={(event) => this.props.onUpdateStat(stat.name, Number(event.target.value))}
                             />
                         ))}
-                        <div id="statFooter">
-                        
-                        </div>
                     </div>
                     
                     {powerModal}
@@ -117,19 +137,15 @@ class Builder extends Component {
                             <Power
                                 key={power.name}
                                 power={power}
+                                attack={this.props.attackNad}
                                 update={() => this.powerUpdateHandler(power, index)}
                                 delete={() => this.props.onPowerDelete(index)}
                             />
                     )})}
                     
-                    <button id="addPower" onClick={this.powerEntryHandler}>Add Power</button>
-                    
-                    <button onClick={this.modeToggleHandler}>
-                        {this.state.editMode ? "DISPLAY" : "EDIT"}
-                    </button>
-                    <button onClick={this.saveMonsterHandler}>
-                        SAVE
-                    </button>
+                    {powerButton}
+                    <br/>
+                    {saveButton}
                 </div>
             </div>
         );    
@@ -160,4 +176,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Builder);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Builder));

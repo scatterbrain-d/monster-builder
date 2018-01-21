@@ -6,6 +6,9 @@ import * as actions from "../../store/actions/index";
 import {checkValidity} from "../../shared/utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Input from "../../components/UI/Input/Input";
+import Aux from "../../hoc/Aux/Aux";
+import style from "./Auth.css";
+import globalStyle from "../../global.css";
 
 class Auth extends Component {
     
@@ -79,17 +82,19 @@ class Auth extends Component {
         }
         
         let form = formElementsArray.map(formElement => (
-                <Input
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    touched={formElement.config.touched}
-                    invalid={!formElement.config.valid}
-                    shouldValidate={formElement.config.validation}
-                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
-                
-                />
+                <Aux key={formElement.id}>
+                    <label>{formElement.id}:</label>
+                    <Input
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        touched={formElement.config.touched}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                    
+                    />
+                </Aux>
             ));
             
         if (this.props.loading) form = <Spinner/>;
@@ -100,22 +105,32 @@ class Auth extends Component {
         
         let authRedirect = null;
         if (this.props.isAuthenticated) {
-            authRedirect = <Redirect to="/"/>;
+            if(this.props.name === "")
+                authRedirect = <Redirect to="/"/>;
+            else
+                authRedirect = <Redirect to="/builder"/>;
         }
         return (
-            <div className="auth">
+            <div className={style.auth}>
+                
                 {authRedirect}
+                
                 <h1>{this.state.isSignUp ? "SIGN UP" : "SIGN IN"}</h1>
-                <form onSubmit={this.submitHandler}>
-                    {form}
-                    {errorMessage}
-                    <button>SUBMIT</button>
-                </form>
-                    
-                <button 
-                    onClick={this.switchAuthModeHandler}
-                >
-                    SWITCH TO {this.state.isSignUp ? "SIGN IN" : "SIGN UP"}</button>
+                    <div className={globalStyle.mainBorder}>
+                        <form 
+                            className={style.authForm}
+                            onSubmit={this.submitHandler}
+                        >
+                            {form}
+                            {errorMessage}
+                            <button>Submit</button>
+                        </form>
+                        <button 
+                            onClick={this.switchAuthModeHandler}
+                        >
+                            Switch to {this.state.isSignUp ? "Sign In" : "Sign Up"}
+                        </button>
+                    </div>
             </div>    
         );
         
@@ -126,7 +141,8 @@ const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
-        isAuthenticated: state.auth.token !==null
+        isAuthenticated: state.auth.token !==null,
+        name: state.monster.stat.name
     };
 };
 

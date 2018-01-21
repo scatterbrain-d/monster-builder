@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Aux from "../../hoc/Aux/Aux";
 import * as actions from "../../store/actions/index";
+import style from "./PowerModal.css";
+import globalStyle from "../../global.css";
 
 class PowerModal extends Component {
     
@@ -52,7 +54,7 @@ class PowerModal extends Component {
         
         const rangeInput = (
                     <input 
-                        className="shortInput"
+                        className={style.shortInput}
                         type="text"
                         name="range"
                         value={this.state.power.range}
@@ -62,7 +64,7 @@ class PowerModal extends Component {
         
         const areaInput = (
                     <input
-                        className="shortInput"
+                        className={style.shortInput}
                         type="text"
                         name="area"
                         value={this.state.power.area}
@@ -91,10 +93,13 @@ class PowerModal extends Component {
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
-                <div className="powerModal">
-                    <h2>Add Power</h2>
-                    <form onSubmit={(event) => this.submitHandler(event, this.state.power)}>
-                        <div>
+                <div className={style.powerModal + " " + globalStyle.mainBorder}>
+                    <h3>Add Power</h3>
+                    <form 
+                        className={style.powerForm}
+                        onSubmit={(event) => this.submitHandler(event, this.state.power)}
+                    >
+                        <div className={style.inputBlock}>
                             <label>Basic Attack</label>
                             <input 
                                 type="checkbox"
@@ -103,7 +108,7 @@ class PowerModal extends Component {
                                 onChange={(event) => this.inputHandler(event)}
                             />
                         </div>
-                        <div>
+                        <div className={style.inputBlock}>
                             <label>Power Name</label>
                             <input
                                 type="text"
@@ -112,7 +117,7 @@ class PowerModal extends Component {
                                 onChange={(event) => this.inputHandler(event)}
                             />
                         </div>
-                        <div>
+                        <div className={style.inputBlock}>
                             <label>Action</label>
                             <select name="action" value={this.state.power.action}
                                 onChange={(event) => this.inputHandler(event)}>
@@ -126,7 +131,7 @@ class PowerModal extends Component {
                                 <option>Opportunity Action</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.inputBlock}>
                             <label>Use</label>
                             <select name="use" value={this.state.power.use}
                                 onChange={(event) => this.inputHandler(event)}>
@@ -140,7 +145,7 @@ class PowerModal extends Component {
                                 <option>When reduced to 0 hp</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.inputBlock}>
                             <label>Range</label>
                             <select name="target" value={this.state.power.target}
                                 onChange={(event) => this.inputHandler(event)}>
@@ -155,7 +160,17 @@ class PowerModal extends Component {
                             </select>
                             {attackRange}
                         </div>
-                        <div>
+                        <div className={style.inputBlock}>
+                            <label>Defense to Hit</label>
+                            <select name="defense" value={this.state.power.defense}
+                                onChange={(event) => this.inputHandler(event)}>
+                                <option>AC</option>
+                                <option>Fortitude</option>
+                                <option>Reflex</option>
+                                <option>Will</option>
+                            </select>
+                        </div>
+                        <div className={style.inputBlock}>
                             <label>Keywords</label>
                             <input 
                                 type="text"
@@ -165,7 +180,7 @@ class PowerModal extends Component {
                                 placeholder="Keywords"
                             />
                         </div>
-                        <div>
+                        <div className={style.inputBlock}>
                             <label>Power Text</label>
                             <textarea
                                 name="text"
