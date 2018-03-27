@@ -4,7 +4,7 @@ const initialState = {
     monsters: [],
     loading: false,
     saved: false,
-    monsterId: null
+    monsterId: null,
 };
 
 const reducer = (state = initialState, action) => {

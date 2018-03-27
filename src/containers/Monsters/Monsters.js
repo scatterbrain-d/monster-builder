@@ -9,10 +9,6 @@ import style from "./Monsters.css";
 
 class Monsters extends Component {
     
-    componentDidMount() {
-        this.props.onFetchMonsters(this.props.token, this.props.userId);
-    }
-    
     selectMonsterHandler = (monster, id) => {
         this.props.onLoadMonster(monster);
         this.props.onLoadMonsterId(id);
@@ -20,7 +16,7 @@ class Monsters extends Component {
     }
     
     deleteMonsterHandler = (id) => {
-        this.props.onDeleteMonster(this.props.token, id);
+        this.props.onDeleteMonster(this.props.token, id, this.props.userId);
         // UPDATE MONSTER LIST SOMEHOW
     }
     
@@ -59,7 +55,7 @@ const mapDispatchToProps = dispatch => {
         onFetchMonsters: (token, userId) => dispatch(actions.fetchMonsters(token, userId)),
         onLoadMonster: (monster) => dispatch(actions.loadMonster(monster)),
         onLoadMonsterId: (id) => dispatch(actions.loadMonsterId(id)),
-        onDeleteMonster: (token, id) => dispatch(actions.deleteMonster(token, id))
+        onDeleteMonster: (token, id, userId) => dispatch(actions.deleteMonster(token, id, userId))
     };
 };
 

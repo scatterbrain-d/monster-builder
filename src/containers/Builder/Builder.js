@@ -44,9 +44,9 @@ class Builder extends Component {
         };
         console.log(this.props.monsterId);
         if(this.props.monsterId === null)
-            this.props.onSaveMonster(monster, this.props.token);
+            this.props.onSaveMonster(monster, this.props.token, this.props.userId);
         else
-            this.props.onUpdateMonster(monster, this.props.token, this.props.monsterId);
+            this.props.onUpdateMonster(monster, this.props.token, this.props.monsterId, this.props.userId);
         this.props.history.push("/monsters");
     }
     
@@ -171,8 +171,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onUpdateStat: (name, value) => dispatch(actions.updateStat(name, value)),
         onPowerDelete: (index) => dispatch(actions.deletePower(index)),
-        onSaveMonster: (monster, token) => dispatch(actions.saveMonster(monster, token)),
-        onUpdateMonster: (monster, token, id) => dispatch(actions.updateMonster(monster, token, id))
+        onSaveMonster: (monster, token, userId) => dispatch(actions.saveMonster(monster, token, userId)),
+        onUpdateMonster: (monster, token, id, userId) => dispatch(actions.updateMonster(monster, token, id, userId))
     };
 };
 

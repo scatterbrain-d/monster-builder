@@ -47,7 +47,7 @@ class Landing extends Component {
                         <select 
                             className={globalStyle.minorBorder}
                             value={this.props.threat} 
-                            onChange={(event) => this.onUpdateStat("threat", event.target.value)}
+                            onChange={(event) => this.props.onUpdateStat("threat", event.target.value)}
                         >
                             <option>Standard</option>
                             <option>Minion</option>

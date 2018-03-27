@@ -104,7 +104,8 @@ class Auth extends Component {
         if (this.props.error) errorMessage = <p><strong>Error: {this.props.error.message}</strong></p>;
         
         let authRedirect = null;
-        if (this.props.isAuthenticated) {
+        if (this.props.token) {
+            this.props.onFetchMonsters(this.props.token, this.props.userId);
             if(this.props.name === "")
                 authRedirect = <Redirect to="/"/>;
             else
@@ -141,14 +142,16 @@ const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
-        isAuthenticated: state.auth.token !==null,
+        token: state.auth.token,
+        userId: state.auth.userId,
         name: state.monster.stat.name
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAuth: (email, password, method) => dispatch(actions.auth(email, password, method))
+        onAuth: (email, password, method) => dispatch(actions.auth(email, password, method)),
+        onFetchMonsters: (token, userId) => dispatch(actions.fetchMonsters(token, userId))
     };
 };
 
