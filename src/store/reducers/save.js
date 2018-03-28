@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     monsters: [],
+    templates: [],
     loading: false,
     saved: false,
     monsterId: null,
@@ -24,6 +25,14 @@ const reducer = (state = initialState, action) => {
             return {...state, monsters: action.monsters, loading: false}}
             
         case (actionTypes.DELETE_SUCCESS): {return{...state, loading:false}}
+        
+        case (actionTypes.FETCH_TEMPLATES_SUCCESS): {
+            return {...state, templates: action.templates, loading: false}}
+        
+        case (actionTypes.SAVE_TEMPLATE_SUCCESS): {
+            const newTemplate = {...action.template, id: action.id};
+            return {...state, templates: state.templates.concat(newTemplate), loading: false};
+        }
         
         default: return {...state};
     }

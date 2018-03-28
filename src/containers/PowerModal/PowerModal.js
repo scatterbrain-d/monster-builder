@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Aux from "../../hoc/Aux/Aux";
+import Power from "../../components/Power/Power";
 import * as actions from "../../store/actions/index";
 import style from "./PowerModal.css";
 import globalStyle from "../../global.css";
@@ -15,7 +16,7 @@ class PowerModal extends Component {
     }
     
     componentWillMount = () => {
-        console.log(this.props.power);    
+        this.props.onFetchTemplates();
         this.setState({power: this.props.power});
     }
     
@@ -46,6 +47,15 @@ class PowerModal extends Component {
                     return this.setState({attackType: 1});
             }
         }
+    }
+    
+    saveTemplateHandler = (power) => {
+        this.props.onSaveTemplate(power, this.props.token);
+    }
+    
+    loadTemplateHandler = (template) => {
+        console.log(this.state);
+        this.setState({power: template});
     }
     
     render(){
@@ -93,104 +103,122 @@ class PowerModal extends Component {
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
-                <div className={style.powerModal + " " + globalStyle.mainBorder}>
-                    <h3>Add Power</h3>
-                    <form 
-                        className={style.powerForm}
-                        onSubmit={(event) => this.submitHandler(event, this.state.power)}
-                    >
-                        <div className={style.inputBlock}>
-                            <label>Basic Attack</label>
-                            <input 
-                                type="checkbox"
-                                name="basic"
-                                value={this.state.power.basic}
-                                onChange={(event) => this.inputHandler(event)}
+                <div className={style.modalContainer}>
+                    <div className={style.templates + " " + globalStyle.mainBorder}>
+                        <h3>Templates</h3>
+                        {this.props.templates.map(template => (
+                            <Power
+                                key={template.name}
+                                power={template}
+                                attack={this.props.attackNad}
+                                load={(template) => this.loadTemplateHandler(template)}
                             />
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Power Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={this.state.power.name}
-                                onChange={(event) => this.inputHandler(event)}
-                            />
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Action</label>
-                            <select name="action" value={this.state.power.action}
-                                onChange={(event) => this.inputHandler(event)}>
-                                <option>Standard</option>
-                                <option>Move</option>
-                                <option>Minor</option>
-                                <option>Free</option>
-                                <option>No Action</option>
-                                <option>Immediate Interrupt</option>
-                                <option>Immediate Reaction</option>
-                                <option>Opportunity Action</option>
-                            </select>
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Use</label>
-                            <select name="use" value={this.state.power.use}
-                                onChange={(event) => this.inputHandler(event)}>
-                                <option>At-Will</option>
-                                <option>Encounter</option>
-                                <option>Recharge when bloodied</option>
-                                <option>Recharge(6)</option>
-                                <option>Recharge(5,6)</option>
-                                <option>Recharge(4,5,6)</option>
-                                <option>When bloodied</option>
-                                <option>When reduced to 0 hp</option>
-                            </select>
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Range</label>
-                            <select name="target" value={this.state.power.target}
-                                onChange={(event) => this.inputHandler(event)}>
-                                <option>Melee</option>
-                                <option>Ranged</option>
-                                <option>Close Burst</option>
-                                <option>Close Blast</option>
-                                <option>Area Burst</option>
-                                <option>Aura</option>
-                                <option>Line</option>
-                                <option>Self</option>
-                            </select>
-                            {attackRange}
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Defense to Hit</label>
-                            <select name="defense" value={this.state.power.defense}
-                                onChange={(event) => this.inputHandler(event)}>
-                                <option>AC</option>
-                                <option>Fortitude</option>
-                                <option>Reflex</option>
-                                <option>Will</option>
-                            </select>
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Keywords</label>
-                            <input 
-                                type="text"
-                                name="keywords"
-                                value={this.state.power.keywords}
-                                onChange={(event) => this.inputHandler(event)}
-                                placeholder="Keywords"
-                            />
-                        </div>
-                        <div className={style.inputBlock}>
-                            <label>Power Text</label>
-                            <textarea
-                                name="text"
-                                value={this.state.power.text}
-                                onChange={(event) => this.inputHandler(event)}
-                                placeholder={"suggested damage:" + this.props.damage}
-                            ></textarea>
-                        </div>
-                        <button>Submit</button>
-                    </form>
+                        ))}
+                    </div>
+                    <div className={style.powerModal + " " + globalStyle.mainBorder}>
+                        <h3>Add Power</h3>
+                        <form 
+                            className={style.powerForm}
+                            onSubmit={(event) => this.submitHandler(event, this.state.power)}
+                        >
+                            <div className={style.inputBlock}>
+                                <label>Basic Attack</label>
+                                <input 
+                                    type="checkbox"
+                                    name="basic"
+                                    value={this.state.power.basic}
+                                    onChange={(event) => this.inputHandler(event)}
+                                />
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Power Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={this.state.power.name}
+                                    onChange={(event) => this.inputHandler(event)}
+                                />
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Action</label>
+                                <select name="action" value={this.state.power.action}
+                                    onChange={(event) => this.inputHandler(event)}>
+                                    <option>Standard</option>
+                                    <option>Move</option>
+                                    <option>Minor</option>
+                                    <option>Free</option>
+                                    <option>No Action</option>
+                                    <option>Immediate Interrupt</option>
+                                    <option>Immediate Reaction</option>
+                                    <option>Opportunity Action</option>
+                                </select>
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Use</label>
+                                <select name="use" value={this.state.power.use}
+                                    onChange={(event) => this.inputHandler(event)}>
+                                    <option>At-Will</option>
+                                    <option>Encounter</option>
+                                    <option>Recharge when bloodied</option>
+                                    <option>Recharge(6)</option>
+                                    <option>Recharge(5,6)</option>
+                                    <option>Recharge(4,5,6)</option>
+                                    <option>When bloodied</option>
+                                    <option>When reduced to 0 hp</option>
+                                </select>
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Range</label>
+                                <select name="target" value={this.state.power.target}
+                                    onChange={(event) => this.inputHandler(event)}>
+                                    <option>Melee</option>
+                                    <option>Ranged</option>
+                                    <option>Close Burst</option>
+                                    <option>Close Blast</option>
+                                    <option>Area Burst</option>
+                                    <option>Aura</option>
+                                    <option>Line</option>
+                                    <option>Self</option>
+                                </select>
+                                {attackRange}
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Defense to Hit</label>
+                                <select name="defense" value={this.state.power.defense}
+                                    onChange={(event) => this.inputHandler(event)}>
+                                    <option>AC</option>
+                                    <option>Fortitude</option>
+                                    <option>Reflex</option>
+                                    <option>Will</option>
+                                </select>
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Keywords</label>
+                                <input 
+                                    type="text"
+                                    name="keywords"
+                                    value={this.state.power.keywords}
+                                    onChange={(event) => this.inputHandler(event)}
+                                    placeholder="Keywords"
+                                />
+                            </div>
+                            <div className={style.inputBlock}>
+                                <label>Power Text</label>
+                                <textarea
+                                    name="text"
+                                    value={this.state.power.text}
+                                    onChange={(event) => this.inputHandler(event)}
+                                    placeholder={"suggested damage:" + this.props.damage}
+                                ></textarea>
+                            </div>
+                            <button
+                                onClick={() => this.saveTemplateHandler(this.state.power)}
+                            >
+                                Save as template
+                            </button>
+                            <button>Submit</button>
+                        </form>
+                    </div>
                 </div>
             </Aux>
         );
@@ -198,10 +226,20 @@ class PowerModal extends Component {
     
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = state => {
     return {
-        onPushPower: (power, index) => dispatch(actions.pushPower(power, index))
+        attackNad: state.monster.attackNad,
+        token: state.auth.token,
+        templates: state.save.templates
     };
 };
 
-export default connect(null, mapDispatchToProps)(PowerModal);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onPushPower: (power, index) => dispatch(actions.pushPower(power, index)),
+        onFetchTemplates: () => dispatch(actions.fetchTemplates()),
+        onSaveTemplate: (power, token) => dispatch(actions.saveTemplate(power, token))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PowerModal);

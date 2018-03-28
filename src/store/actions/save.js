@@ -106,3 +106,52 @@ export const deleteSuccess = () => {
         type: actionTypes.DELETE_SUCCESS
     };
 };
+
+export const fetchTemplatesSuccess = (templates) => {
+    return {
+        type: actionTypes.FETCH_TEMPLATES_SUCCESS,
+        templates: templates
+    };
+};
+
+export const fetchTemplates = () => {
+    return dispatch => {
+        dispatch(asyncStart());
+        axios.get("/templates.json")
+            .then(res => {
+                const fetchedTemplates =[];
+                for(let key in res.data) {
+                    fetchedTemplates.push({
+                        ...res.data[key],
+                        id: key
+                    });
+                }
+                dispatch(fetchTemplatesSuccess(fetchedTemplates));
+            })
+            .catch(error => {
+                dispatch(asyncFail(error));
+        });
+    };
+};
+
+export const saveTemplateSuccess = (id, template) => {
+    return {
+        type: actionTypes.SAVE_TEMPLATE_SUCCESS,
+        id: id,
+        template: template
+    };
+};
+
+export const saveTemplate = (template, token) => {
+    return dispatch => {
+        dispatch(asyncStart());
+        axios.post("/templates.json?auth=" + token, template)
+            .then(response => {
+               dispatch(saveTemplateSuccess(response.data.name, template));
+               dispatch(fetchTemplates());
+            })
+            .catch(error => {
+                dispatch(asyncFail(error));
+        });
+    };    
+};

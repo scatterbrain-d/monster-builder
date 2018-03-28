@@ -1,11 +1,24 @@
-.powerModal {
-  background-color: white;
+.modalContainer {
   position: fixed;
-  width: 60%;
+  height: 60vh;
+  width: 80%;
   top: 20%;
-  left: 20%;
+  left: 10%;
   padding: 3%;
   z-index: 100;
+  display: flex;
+  justify-content: space-between;
+}
+
+.templates {
+  background-color: white;
+  width: 45%;
+  overflow-y: auto;
+}
+
+.powerModal {
+  width: 45%;
+  background-color: white;
 }
 
 .powerModal div {margin: 5px;}

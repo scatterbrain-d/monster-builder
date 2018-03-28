@@ -14,9 +14,16 @@
   position: relative;
 }
 
+.flexDisplay {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: space-between;
+}
+
 .editBlock {
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(11, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 1fr);
 }
 
 .displayBlock {
@@ -47,10 +54,9 @@
 }
 
 .block {
-  max-height: 60%;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto 20px auto;
+  height: 100%;
+  width: 55%;
+  margin: 10px;
   display: grid;
   background-color: #F2DDB8;
   font-weight: bold;
@@ -83,10 +89,16 @@
   color: #422500;
 }
 
-.addPower {
-  font-size: 2em;
-  width: 100%;
-  max-width: 800px;
+.powerBlock {
+  width: 40%;
+  margin: 10px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {

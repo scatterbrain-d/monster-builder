@@ -32,7 +32,8 @@ class Builder extends Component {
                 area: "",
                 defense: "AC",
                 keywords: "",
-                text: ""
+                text: "",
+                category: ""
             }
         });
     }
@@ -94,7 +95,7 @@ class Builder extends Component {
                     />
                 );
         
-        let powerButton = this.state.editMode ? <button className={style.addPower} onClick={this.powerEntryHandler}>Add Power</button> 
+        let powerButton = this.state.editMode ? <button className={style.button} onClick={this.powerEntryHandler}>Add Power</button> 
             : null;
         
         let saveButton = <button className={style.button} onClick={this.saveMonsterHandler}>Save</button>;
@@ -106,46 +107,50 @@ class Builder extends Component {
             <div className={style.builder}>
                 <div className={style.container}>
                     <h2>{this.state.editMode ? "Edit" : "View"} Monster</h2>
-                    <button className={style.button} onClick={this.modeToggleHandler}>
-                        {this.state.editMode ? "Display" : "Edit"}
-                    </button>
-                    <div className={
-                        style.block
-                        +" "+
-                        (this.state.editMode ? style.editBlock : style.displayBlock) 
-                        +" "+ 
-                        globalStyle.mainBorder}
-                    >
-                        <div className={style.blockHeader + " " + globalStyle.minorBorder}/>
-                        <div className={style.blockFooter + " " + globalStyle.minorBorder}/>
-                        {statArray.map(stat => (
-                            <StatBox
-                                key={stat.name}
-                                name={stat.name}
-                                value={stat.value}
-                                edit={this.state.editMode}
-                                strUpdate={(event) => this.props.onUpdateStat(stat.name, event.target.value)}
-                                numUpdate={(event) => this.props.onUpdateStat(stat.name, Number(event.target.value))}
-                            />
-                        ))}
+                    <div className={style.buttons}>
+                        <button className={style.button} onClick={this.modeToggleHandler}>
+                            {this.state.editMode ? "Display" : "Edit"}
+                        </button>
+                        {powerButton}
+                        {saveButton}
                     </div>
-                    
+                    <div className={style.flexDisplay}>
+                        <div className={
+                            style.block
+                            +" "+
+                            (this.state.editMode ? style.editBlock : style.displayBlock) 
+                            +" "+ 
+                            globalStyle.mainBorder}
+                        >
+                            <div className={style.blockHeader + " " + globalStyle.minorBorder}/>
+                            <div className={style.blockFooter + " " + globalStyle.minorBorder}/>
+                            {statArray.map(stat => (
+                                <StatBox
+                                    key={stat.name}
+                                    name={stat.name}
+                                    value={stat.value}
+                                    edit={this.state.editMode}
+                                    strUpdate={(event) => this.props.onUpdateStat(stat.name, event.target.value)}
+                                    numUpdate={(event) => this.props.onUpdateStat(stat.name, Number(event.target.value))}
+                                />
+                            ))}
+                        </div>
+                        
+                        <div className={style.powerBlock}>
+                            
+                            {powerArray.map((power, index) => {
+                            return (
+                                    <Power
+                                        key={power.name}
+                                        power={power}
+                                        attack={this.props.attackNad}
+                                        update={() => this.powerUpdateHandler(power, index)}
+                                        delete={() => this.props.onPowerDelete(index)}
+                                    />
+                            )})}
+                        </div>
+                    </div>
                     {powerModal}
-
-                    {powerArray.map((power, index) => {
-                    return (
-                            <Power
-                                key={power.name}
-                                power={power}
-                                attack={this.props.attackNad}
-                                update={() => this.powerUpdateHandler(power, index)}
-                                delete={() => this.props.onPowerDelete(index)}
-                            />
-                    )})}
-                    
-                    {powerButton}
-                    <br/>
-                    {saveButton}
                 </div>
             </div>
         );    

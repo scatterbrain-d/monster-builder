@@ -4,165 +4,165 @@
 
 #name {
   grid-column-start:1;
-  grid-column-end:11;
+  grid-column-end:5;
   grid-row-start:1;
-  grid-row-end:3;
+  grid-row-end:2;
 }
 
 #initiative {
-  grid-column-start:11;
-  grid-column-end:13;
+  grid-column-start:5;
+  grid-column-end:7;
   grid-row-start:1;
-  grid-row-end:3;
-}
-
-#level, #threat, #size, #role {
-  display: none;
+  grid-row-end:2;
 }
 
 #keywords {
   grid-column-start:1;
   grid-column-end:7;
-  grid-row-start:3;
-  grid-row-end:5;
-}
-
-#speed {
-  grid-column-start:7;
-  grid-column-end:11;
-  grid-row-start:3;
-  grid-row-end:5;
+  grid-row-start:2;
+  grid-row-end:3;
 }
 
 #ap {
-  grid-column-start:11;
-  grid-column-end:13;
+  grid-column-start:1;
+  grid-column-end:3;
   grid-row-start:3;
-  grid-row-end:5;
+  grid-row-end:4;
+}
+
+#speed {
+  grid-column-start:3;
+  grid-column-end:7;
+  grid-row-start:3;
+  grid-row-end:4;
 }
 
 #hp {
   grid-column-start:1;
   grid-column-end:3;
-  grid-row-start:5;
-  grid-row-end:7;
+  grid-row-start:4;
+  grid-row-end:5;
 }
 
 #ac {
   grid-column-start:3;
-  grid-column-end:5;
-  grid-row-start:5;
-  grid-row-end:7;
+  grid-column-end:4;
+  grid-row-start:4;
+  grid-row-end:5;
 }
 
 #fort {
-  grid-column-start:5;
-  grid-column-end:7;
-  grid-row-start:5;
-  grid-row-end:7;
+  grid-column-start:4;
+  grid-column-end:5;
+  grid-row-start:4;
+  grid-row-end:5;
 }
 
 #ref {
-  grid-column-start:7;
-  grid-column-end:9;
-  grid-row-start:5;
-  grid-row-end:7;
+  grid-column-start:5;
+  grid-column-end:6;
+  grid-row-start:4;
+  grid-row-end:5;
 }
 
 #will {
-  grid-column-start:9;
-  grid-column-end:11;
-  grid-row-start:5;
-  grid-row-end:7;
+  grid-column-start:6;
+  grid-column-end:7;
+  grid-row-start:4;
+  grid-row-end:5;
 }
 
 #save {
-  grid-column-start:11;
-  grid-column-end:13;
+  grid-column-start:1;
+  grid-column-end:3;
   grid-row-start:5;
-  grid-row-end:7;
+  grid-row-end:6;
 }
 
 #resist {
-  grid-column-start:1;
+  grid-column-start:3;
   grid-column-end:7;
-  grid-row-start:7;
-  grid-row-end:9;
-}
-
-#senses {
-  grid-column-start:7;
-  grid-column-end:10;
-  grid-row-start:7;
-  grid-row-end:9;
-}
-
-#languages {
-  grid-column-start:10;
-  grid-column-end:13;
-  grid-row-start:7;
-  grid-row-end:9;
+  grid-row-start:5;
+  grid-row-end:6;
 }
 
 #alignment {
   grid-column-start:1;
+  grid-column-end:4;
+  grid-row-start:6;
+  grid-row-end:7;
+}
+
+#senses {
+  grid-column-start:4;
   grid-column-end:7;
-  grid-row-start:9;
-  grid-row-end:10;
+  grid-row-start:6;
+  grid-row-end:7;
+}
+
+#languages {
+  grid-column-start:1;
+  grid-column-end:7;
+  grid-row-start:7;
+  grid-row-end:8;
 }
 
 #skills {
-  grid-column-start:7;
-  grid-column-end:13;
-  grid-row-start:9;
-  grid-row-end:10;
+  grid-column-start:1;
+  grid-column-end:7;
+  grid-row-start:8;
+  grid-row-end:9;
 }
 
 #str {
   grid-column-start:1;
-  grid-column-end:3;
-  grid-row-start:10;
-  grid-row-end:11;
+  grid-column-end:2;
+  grid-row-start:9;
+  grid-row-end:10;
 }
 
 #con {
-  grid-column-start:3;
-  grid-column-end:5;
-  grid-row-start:10;
-  grid-row-end:11;
+  grid-column-start:2;
+  grid-column-end:3;
+  grid-row-start:9;
+  grid-row-end:10;
 }
 
 #dex {
-  grid-column-start:5;
-  grid-column-end:7;
-  grid-row-start:10;
-  grid-row-end:11;
+  grid-column-start:3;
+  grid-column-end:4;
+  grid-row-start:9;
+  grid-row-end:10;
 }
 
 #int {
-  grid-column-start:7;
-  grid-column-end:9;
-  grid-row-start:10;
-  grid-row-end:11;
+  grid-column-start:4;
+  grid-column-end:5;
+  grid-row-start:9;
+  grid-row-end:10;
 }
 
 #wis {
-  grid-column-start:9;
-  grid-column-end:11;
-  grid-row-start:10;
-  grid-row-end:11;
+  grid-column-start:5;
+  grid-column-end:6;
+  grid-row-start:9;
+  grid-row-end:10;
 }
 
 #cha {
-  grid-column-start:11;
-  grid-column-end:13;
-  grid-row-start:10;
-  grid-row-end:11;
+  grid-column-start:6;
+  grid-column-end:7;
+  grid-row-start:9;
+  grid-row-end:10;
 }
 
 #img {
-  grid-column: 1 / 13;
-  grid-row: 11 / 12;
+  grid-column: 1 / 7;
+  grid-row: 10 / 11;
+}
+
+#level, #threat, #size, #role {
+  display: none;
 }
 
 #img input {font-size: 0.75em;}
