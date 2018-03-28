@@ -42,14 +42,13 @@ const power = (props) => {
     let attack = props.attack;
     if(props.power.defense === "AC") attack += 2;
     
-    let buttons = (
+    let buttons = "";
+    if (props.update) buttons = (
             <Aux>
                 <button onClick={props.update}>Edit</button>
                 <button onClick={props.delete}>Delete</button>
             </Aux>
         );
-    if (props.load)
-        buttons = <button onClick={props.load}>Use Template</button>;
 
     return (
         <div className={style.powerBox + " " + globalStyle.mainBorder}>

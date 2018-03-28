@@ -26,36 +26,44 @@ class PowerModal extends Component {
         this.props.modalClosed();
     }
     
-    inputHandler = (event) => {
-        const newPower = {...this.state.power, [event.target.name]: event.target.value};
-        this.setState({power: newPower});
-        if (event.target.name === "target") {
-            switch (event.target.value) {
-                case "Self":
-                    return this.setState({attackType: 0});
-                case "Melee":
-                case "Ranged":
-                case "Line":
-                    return this.setState({attackType: 1});
-                case "Close Blast":
-                case "Close Burst":
-                case "Aura":
-                    return this.setState({attackType: 2});
-                case "Area Burst":
-                    return this.setState({attackType: 3});
-                default:
-                    return this.setState({attackType: 1});
-            }
+    inputHandler = (event, template) => {
+        let newPower;
+        if (template) {
+            newPower = {...this.state.power, ...template};
+        console.log(newPower);
+        } else {
+            newPower = {...this.state.power, [event.target.name]: event.target.value};
         }
+        let aType;
+        switch (newPower.target) {
+            case "Self":
+                aType = 0;
+                break;
+            case "Melee":
+            case "Ranged":
+            case "Line":
+                aType = 1;
+                break;
+            case "Close Blast":
+            case "Close Burst":
+            case "Aura":
+                aType = 2;
+                break;
+            case "Area Burst":
+                aType = 3;
+                break;
+            default:
+                aType = 1;
+        }
+        this.setState({power: newPower, attackType: aType});
     }
     
     saveTemplateHandler = (power) => {
         this.props.onSaveTemplate(power, this.props.token);
     }
     
-    loadTemplateHandler = (template) => {
-        console.log(this.state);
-        this.setState({power: template});
+    loadTemplateHandler = (event) => {
+        console.log(event.target);
     }
     
     render(){
@@ -106,14 +114,19 @@ class PowerModal extends Component {
                 <div className={style.modalContainer}>
                     <div className={style.templates + " " + globalStyle.mainBorder}>
                         <h3>Templates</h3>
-                        {this.props.templates.map(template => (
-                            <Power
-                                key={template.name}
-                                power={template}
-                                attack={this.props.attackNad}
-                                load={(template) => this.loadTemplateHandler(template)}
-                            />
-                        ))}
+                            {this.props.templates.map(template => (
+                                <div 
+                                    className={style.templateWrapper}
+                                    onClick={(event) => this.inputHandler(event, template)}
+                                    key={template.name}
+                                >
+                                    <Power
+                                        power={template}
+                                        attack={this.props.attackNad}
+                                        
+                                    />
+                                </div>
+                            ))}
                     </div>
                     <div className={style.powerModal + " " + globalStyle.mainBorder}>
                         <h3>Add Power</h3>
