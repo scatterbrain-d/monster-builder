@@ -116,7 +116,10 @@ class Auth extends Component {
                 
                 {authRedirect}
                 
-                <h1>{this.state.isSignUp ? "SIGN UP" : "SIGN IN"}</h1>
+                <h1 className={style.title}>
+                    {this.state.isSignUp ? "SIGN UP" : "SIGN IN"}
+                </h1>
+                    
                     <div className={globalStyle.mainBorder}>
                         <form 
                             className={style.authForm}

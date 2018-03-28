@@ -6,19 +6,31 @@
 
 .navbar ul {
   list-style: none;
-  margin: 0 20px;
+  margin-left: -40px;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .navbar li {
-  display: inline-block;
-  margin: 0 20px;
+  margin: 0;
+  padding: 0 2px;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 .navbar a {
    text-decoration: none;
    color: #F2DDB8;
+   margin: auto;
+}
+
+@media only screen and (min-width: 650px) {
+  .navbar ul {
+    margin-left: 50%;
+  }
 }

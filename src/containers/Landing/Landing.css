@@ -16,11 +16,13 @@
   justify-content: center;
   font-size: 1.5em;
   font-weight: bold;
+  width: 100%;
 }
 
 .creationForm label {
   padding: 5px;
   font-weight: bold;
+  width: 100%;
 }
 
 .creationForm button {
@@ -35,9 +37,53 @@
   padding: 0 10px;
 }
 
-.creationForm input, select {
+.creationForm select {
   text-align: center;
   font-size: 1em;
   font-weight: bold;
   color: #422500;
+  width: 100%;
+  max-width: 100%;
+}
+
+.name {
+  width: 100%;
+  display: flex;
+  font-size: 1em;
+}
+
+.name label {
+  width: 74px;  
+}
+.name input {
+  flex-grow: 100;
+  font-size: 1em;
+  min-width: 0;
+  font-weight: bold;
+  color: #422500;
+}
+
+.number {
+  font-size: 1em;
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: #422500;
+}
+
+.title {
+  font-size: 2em;
+  text-align: center;
+}
+
+@media only screen and (min-width: 350px) {
+  .title {font-size: 3em;}
+  .creationForm {width: 350px;}
+  .creationForm select {width: auto;}
+  .name {width: 100%;}
+}
+
+@media only screen and (min-width: 650px) {
+  .title {font-size: 4em;}
+  .creationForm {width: 400px;}
 }

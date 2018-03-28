@@ -25,3 +25,18 @@ button {
   box-shadow: 2px 2px 2px black;
   margin: 2px auto;
 }
+
+h1, h2 {
+  color: white;
+  text-shadow: 3px 3px 3px #222;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px auto;
+}
+
+h3 {
+  margin: 0 auto;
+  color: var(--darkbrown);
+}

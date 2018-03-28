@@ -119,6 +119,7 @@ class PowerModal extends Component {
                                     className={style.templateWrapper}
                                     onClick={(event) => this.inputHandler(event, template)}
                                     key={template.name}
+                                    title="Use template"
                                 >
                                     <Power
                                         power={template}

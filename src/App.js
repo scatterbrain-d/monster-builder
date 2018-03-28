@@ -7,8 +7,10 @@ import Landing from "./containers/Landing/Landing";
 import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import Navbar from "./components/Navigation/Navbar/Navbar";
-import style from "./App.css";
 import * as actions from "./store/actions/index";
+import globalStyle from "./global.css";
+
+// lazy loading of some components
 
 const asyncMonsters = asyncComponent(() => {
   return import("./containers/Monsters/Monsters");
@@ -17,6 +19,7 @@ const asyncMonsters = asyncComponent(() => {
 const asyncBuilder = asyncComponent(() => {
   return import("./containers/Builder/Builder");
 })
+
 
 class App extends Component {
   
@@ -49,7 +52,7 @@ class App extends Component {
     }
     
     return (
-      <div className={style.app}>
+      <div className={globalStyle.app}>
         <Navbar
           isAuth={this.props.isAuthenticated}
         />
