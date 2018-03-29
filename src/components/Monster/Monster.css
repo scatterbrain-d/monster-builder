@@ -1,38 +1,25 @@
-
-.container {
-    width: 60%;
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-}
-
 .fetchedMonster {
+    width: 90%;
+    max-width: 200px;
+    margin: 10px;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    padding: 5px;
 }
 
 .fetchedMonster img {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 150px;
+    max-width: 150px;
 }
 
-.monsterDesc {
-    display: flex;
-    flex-flow: column;
-    padding: 10px;
-    color: #422500;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.monsterDesc h3 {
-    margin: 10px 0;
+.fetchedMonster p {
+    margin: 5px auto;
 }
 
 .buttons {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }

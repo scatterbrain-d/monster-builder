@@ -25,16 +25,18 @@ class Monsters extends Component {
         
         if(!this.props.loading)
             monsters = (
-                <div className={style.container}>
-                    <h2>My Monsters</h2>
-                    {this.props.monsters.map(entry => (
-                        <Monster
-                            key={entry.id}
-                            stat={entry.monster.stat}
-                            load={() => this.selectMonsterHandler(entry.monster, entry.id)}
-                            delete={() => this.deleteMonsterHandler(entry.id)}
-                        />
-                    ))}
+                <div className={style.monsters}>
+                    <h1 className={style.title}>My Monsters</h1>
+                    <div className={style.container}>
+                        {this.props.monsters.map(entry => (
+                            <Monster
+                                key={entry.id}
+                                stat={entry.monster.stat}
+                                load={() => this.selectMonsterHandler(entry.monster, entry.id)}
+                                delete={() => this.deleteMonsterHandler(entry.id)}
+                            />
+                        ))}
+                    </div>
                 </div>    
             );
         return monsters;

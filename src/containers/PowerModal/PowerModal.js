@@ -225,12 +225,14 @@ class PowerModal extends Component {
                                     placeholder={"suggested damage:" + this.props.damage}
                                 ></textarea>
                             </div>
-                            <button
-                                onClick={() => this.saveTemplateHandler(this.state.power)}
-                            >
-                                Save as template
-                            </button>
-                            <button>Submit</button>
+                            <div className={style.buttons}>
+                                <button
+                                    onClick={() => this.saveTemplateHandler(this.state.power)}
+                                >
+                                    Save as template
+                                </button>
+                                <button>Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>

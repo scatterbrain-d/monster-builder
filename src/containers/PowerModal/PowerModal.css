@@ -1,19 +1,27 @@
 .modalContainer {
   position: fixed;
-  height: 80vh;
-  width: 80%;
-  top: 20%;
-  left: 10%;
+  margin: auto;
+  height: auto;
+  width: 90%;
+  top: 0;
+  left: 5%;
   padding: 3%;
   z-index: 100;
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
+}
+
+.modalContainer h3 {
+  margin: 5px;
 }
 
 .templates {
   background-color: white;
-  width: 45%;
+  width: 100%;
+  height: 40vh;
   overflow-y: auto;
+  margin-bottom: 10px;
 }
 
 .templateWrapper {
@@ -25,27 +33,29 @@
 }
 
 .powerModal {
-  width: 45%;
+  width: 100%;
   background-color: white;
+  max-width: 500px;
 }
 
 .powerModal div {margin: 5px;}
 
 .powerForm {
   margin: auto;
-  width: 60%;
+  width: 100%;
   text-align: left;
 }
 
 .inputBlock {
   margin: 0 5px;
   display: flex;
-  width: 100%;
+  flex-wrap: wrap;
+  width: 95%;
+  min-width: 0;
   align-items: center;
 }
 
 .inputBlock input[type="text"],
-.inputBlock select,
 .inputBlock textarea {
   flex: 1 1 auto;
 }
@@ -53,6 +63,7 @@
 .powerForm label {
   padding: 5px;
   font-weight: bold;
+  flex: 0 0 auto;
 }
 
 .powerForm span {
@@ -61,4 +72,36 @@
 
 .shortInput {
   width: 50px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px;
+}
+
+@media only screen and (min-width: 650px) {
+  .modalContainer {
+    top: 20%;
+    flex-flow: row;
+  }
+  
+  .templates {
+    height: auto;
+    width: 45%;
+    max-width: 450px;
+    margin-bottom: 0;
+    max-height: 50vh;
+  }
+  
+  .powerModal {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .modalContainer {
+    width: 60%;
+    left: 20%;
+  }
 }

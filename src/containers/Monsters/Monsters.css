@@ -1,6 +1,22 @@
-.container {
-  padding-top: 20px;
-  width: 80%;
+.monsters {
+  width: 100%;
   margin: auto;
   position: relative;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 350px) {
+  .title {font-size: 3em;}
+}
+
+@media only screen and (min-width: 650px) {
+  .title {font-size: 4em;}
+  .monsters {width: 90%;}
 }
