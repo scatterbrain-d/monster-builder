@@ -5,6 +5,10 @@
   flex-flow: column;
   align-items: center;
   justify-content: flex-start;
+  background-size: cover;
+  background-image: url("http://www.wallpapers13.com/wp-content/uploads/2015/11/Guild_Wars_fantasy_creatures_monsters_demons_weapons_sword_spear_magic_fire_flames_army_warrior_soldiers_dark_scary_evil_art_battle_war_2560x1573-915x515.jpg");
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .creationForm {
@@ -41,7 +45,7 @@
   text-align: center;
   font-size: 1em;
   font-weight: bold;
-  color: #422500;
+  color: var(--darkbrown);
   width: 100%;
   max-width: 100%;
 }
@@ -60,7 +64,7 @@
   font-size: 1em;
   min-width: 0;
   font-weight: bold;
-  color: #422500;
+  color: var(--darkbrown);
 }
 
 .number {
@@ -68,22 +72,15 @@
   width: 60px;
   text-align: center;
   font-weight: bold;
-  color: #422500;
-}
-
-.title {
-  font-size: 2em;
-  text-align: center;
+  color: var(--darkbrown);
 }
 
 @media only screen and (min-width: 350px) {
-  .title {font-size: 3em;}
   .creationForm {width: 350px;}
   .creationForm select {width: auto;}
   .name {width: 100%;}
 }
 
 @media only screen and (min-width: 650px) {
-  .title {font-size: 4em;}
   .creationForm {width: 400px;}
 }

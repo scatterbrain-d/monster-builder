@@ -6,6 +6,7 @@ import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Monster from "../../components/Monster/Monster";
 import style from "./Monsters.css";
+import globalStyle from "../../global.css";
 
 class Monsters extends Component {
     
@@ -25,8 +26,8 @@ class Monsters extends Component {
         
         if(!this.props.loading)
             monsters = (
-                <div className={style.monsters}>
-                    <h1 className={style.title}>My Monsters</h1>
+                <div>
+                    <h1 className={globalStyle.title}>My Monsters</h1>
                     <div className={style.container}>
                         {this.props.monsters.map(entry => (
                             <Monster
@@ -39,7 +40,11 @@ class Monsters extends Component {
                     </div>
                 </div>    
             );
-        return monsters;
+        return (
+            <div className={style.monsters}>
+                {monsters}
+            </div>
+        );
     }
 }
 

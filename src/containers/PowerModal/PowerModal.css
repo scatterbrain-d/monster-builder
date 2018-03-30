@@ -36,6 +36,8 @@
   width: 100%;
   background-color: white;
   max-width: 500px;
+  height: 50vh;
+  overflow-y: auto;
 }
 
 .powerModal div {margin: 5px;}
@@ -58,6 +60,11 @@
 .inputBlock input[type="text"],
 .inputBlock textarea {
   flex: 1 1 auto;
+}
+
+.inputBlock p {
+  font-size: 1em;
+  margin: 0 auto;
 }
 
 .powerForm label {
@@ -91,11 +98,13 @@
     width: 45%;
     max-width: 450px;
     margin-bottom: 0;
-    max-height: 50vh;
+    max-height: 65vh;
   }
   
   .powerModal {
     width: 50%;
+    height: auto;
+    max-height: 65vh;
   }
 }
 

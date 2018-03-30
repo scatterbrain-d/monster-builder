@@ -6,11 +6,7 @@
   background-image: url("http://www.tribality.com/wp-content/uploads/2014/10/underdark.jpg");
   background-size: cover;
   background-attachment: fixed;
-}
-
-.title {
-  margin: 0 auto;
-  padding: 10px 0;
+  background-position: center;
 }
 
 .buttons {
@@ -18,7 +14,7 @@
   max-width: 900px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .button {
@@ -79,12 +75,11 @@
   width: 100%;
   margin: 10px;
   display: grid;
-  background-color: #F2DDB8;
+  background-color: var(--lightbrown);
   font-weight: bold;
 }
 
 .block>div {
-  /*border: 1px solid #422500;*/
   position: relative;
   height: 100%;
   width: 100%;
@@ -93,7 +88,6 @@
 .block label {
   padding: 1px;
   font-size: 0.5em;
-  /*font-size: 0.7em;*/
   text-transform: uppercase;
   position: absolute;
   left:0;
@@ -103,7 +97,6 @@
 }
 
 .editBlock input {
-  /*font-size: 1.5em;*/
   font-size: 1em;
   text-align: center;
   height: auto;
@@ -119,17 +112,16 @@
   overflow-y: auto;
 }
 
-
-
 @media only screen and (min-width: 350px) {
-  .title {font-size: 3em;}
   .container {width: 90%;}
 }
 
 @media only screen and (min-width: 650px) {
-  .title {font-size: 4em;}
   .builder {height: calc(100vh - 50px);}
   .flexDisplay {flex-flow: row;}
   .powerBlock {max-width: 400px;}
   .block {max-width: 500px;}
+  .block label {font-size: 0.7em;}
+  .editBlock input {font-size: 1.5em;}
+  .button {font-size: 1.2em;}
 }

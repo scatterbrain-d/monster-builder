@@ -15,7 +15,6 @@ export const createMonster = () => {
 };
 
 export const pushPower = (power, index) => {
-    console.log(power, index);
     return {
         type: actionTypes.PUSH_POWER,
         object: power,

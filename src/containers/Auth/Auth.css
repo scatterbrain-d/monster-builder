@@ -1,16 +1,25 @@
 .auth {
-    text-align: center;
+  width: 100%;
+  height: calc(100vh - 50px);
+  text-align: center;
+  background-size: cover;
+  background-image: url("https://i.imgur.com/9RbxoCr.jpg");
+  background-attachment: fixed;
+  background-position: top center;
+}
+
+.authBox {
     margin: auto;
     width: 100%;
     max-width: 550px;
 }
 
-.auth div {
+.authBox div {
     padding-top: 10px;
     padding-bottom: 20px;
 }
 
-.auth button {
+.authBox button {
     margin: 5px auto;
     font-size: 1em;
     font-weight: bold;
@@ -39,11 +48,9 @@
 }
 
 @media only screen and (min-width: 350px) {
-  .title {font-size: 3em;}
-  .auth {width: 90%;}
+  .authBox {width: 90%;}
 }
 
 @media only screen and (min-width: 650px) {
-  .title {font-size: 4em;}
-  .auth {width: 60%;}
+  .authBox {width: 60%;}
 }

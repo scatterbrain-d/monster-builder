@@ -12,6 +12,7 @@ class PowerModal extends Component {
     
     state = {
         attackType: 1,
+        powerDamage: this.props.damage,
         power: {}
     }
     
@@ -30,11 +31,11 @@ class PowerModal extends Component {
         let newPower;
         if (template) {
             newPower = {...this.state.power, ...template};
-        console.log(newPower);
         } else {
             newPower = {...this.state.power, [event.target.name]: event.target.value};
         }
         let aType;
+        let damage = this.props.damage;
         switch (newPower.target) {
             case "Self":
                 aType = 0;
@@ -48,14 +49,18 @@ class PowerModal extends Component {
             case "Close Burst":
             case "Aura":
                 aType = 2;
+                damage *= 0.75;
                 break;
             case "Area Burst":
                 aType = 3;
+                damage *= 0.75;
                 break;
             default:
                 aType = 1;
         }
-        this.setState({power: newPower, attackType: aType});
+        if (newPower.use !== "At-Will")
+            damage *= 1.25;
+        this.setState({power: newPower, attackType: aType, powerDamage: (Math.floor(damage))});
     }
     
     saveTemplateHandler = (power) => {
@@ -107,6 +112,14 @@ class PowerModal extends Component {
             break;
             default: attackRange = null;
         }
+        
+        let saveTemplateButton = "";
+        
+        if(this.props.token !== null)
+            saveTemplateButton = (
+                <button onClick={() => this.saveTemplateHandler(this.state.power)}>
+                Save as template</button>
+            );
         
         return (
             <Aux>
@@ -218,19 +231,16 @@ class PowerModal extends Component {
                             </div>
                             <div className={style.inputBlock}>
                                 <label>Power Text</label>
+                                <p>Suggested damage: {this.state.powerDamage}</p>
                                 <textarea
                                     name="text"
                                     value={this.state.power.text}
                                     onChange={(event) => this.inputHandler(event)}
-                                    placeholder={"suggested damage:" + this.props.damage}
+                                    placeholder={"put all power effects here"}
                                 ></textarea>
                             </div>
                             <div className={style.buttons}>
-                                <button
-                                    onClick={() => this.saveTemplateHandler(this.state.power)}
-                                >
-                                    Save as template
-                                </button>
+                                {saveTemplateButton}
                                 <button>Submit</button>
                             </div>
                         </form>
@@ -245,6 +255,7 @@ class PowerModal extends Component {
 const mapStateToProps = state => {
     return {
         attackNad: state.monster.attackNad,
+        damage: state.monster.damage,
         token: state.auth.token,
         templates: state.save.templates
     };

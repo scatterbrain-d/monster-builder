@@ -90,7 +90,6 @@ class Builder extends Component {
                         show={this.state.showPowerModal}
                         modalClosed={this.powerEntryHandler}
                         index={this.state.powerIndex}
-                        damage={this.props.damage}
                         power={this.state.powerTemplate}
                     />
                 );
@@ -106,7 +105,7 @@ class Builder extends Component {
         return (
             <div className={style.builder}>
                 <div className={style.container}>
-                    <h1 className={style.title}>{this.state.editMode ? "Edit" : "View"} Monster</h1>
+                    <h1 className={globalStyle.title}>{this.state.editMode ? "Edit" : "View"} Monster</h1>
                     <div className={style.buttons}>
                         <button className={style.button} onClick={this.modeToggleHandler}>
                             {this.state.editMode ? "Display" : "Edit"}
@@ -160,7 +159,6 @@ class Builder extends Component {
 const mapStateToProps = state => {
     return {
         monster: state.monster,
-        damage: state.monster.damage,
         attackAc: state.monster.attackAc,
         attackNad: state.monster.attackNad,
         powerCount: state.monster.powerCount,

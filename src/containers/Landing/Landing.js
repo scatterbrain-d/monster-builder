@@ -95,7 +95,7 @@ class Landing extends Component {
         
         return (
             <div className={style.landing}>
-                <div><h1 className={style.title}>D&D Monster Builder</h1></div>
+                <div><h1 className={globalStyle.title}>D&D Monster Builder</h1></div>
                 <form className={style.creationForm + " " + globalStyle.mainBorder} onSubmit={this.onSubmitHandler}>
                     {nameInput}
                     {levelInput}
