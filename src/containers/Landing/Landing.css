@@ -11,6 +11,11 @@
   background-position: center;
 }
 
+.pink {
+  color: pink;
+  background-color: pink;
+}
+
 .creationForm {
   background-color: white;
   margin: 0 auto;

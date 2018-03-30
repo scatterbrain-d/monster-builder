@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
+import Dropdown from "../../components/UI/Dropdown/Dropdown";
 import * as actions from "../../store/actions/index";
 import style from "./Landing.css";
 import globalStyle from "../../global.css";
 
 class Landing extends Component {
-    
     
     onSubmitHandler = (event) => {
         event.preventDefault();
@@ -40,59 +40,30 @@ class Landing extends Component {
                 />
             </div>
         );
-        
         const threatInput = (
-            <div>
-                <label>Threat</label>
-                <select 
-                    className={globalStyle.minorBorder}
-                    value={this.props.threat} 
-                    onChange={(event) => this.props.onUpdateStat("threat", event.target.value)}
-                >
-                    <option>Standard</option>
-                    <option>Minion</option>
-                    <option>Elite</option>
-                    <option>Solo</option>
-                </select>
-            </div>    
+            <Dropdown
+                label="Threat"
+                value={this.props.threat}
+                change={(event) => this.props.onUpdateStat("threat", event.target.value)}
+                options={["Standard", "Minion", "Elite", "Solo"]}
+            />
         );
-        
         const roleInput = (
-            <div>
-                <label>Role</label>
-                <select 
-                    className={globalStyle.minorBorder}
-                    value={this.props.role} 
-                    onChange={(event) => this.props.onUpdateStat("role", event.target.value)}
-                >
-                    <option>Soldier</option>
-                    <option>Skirmisher</option>
-                    <option>Brute</option>
-                    <option>Artillery</option>
-                    <option>Lurker</option>
-                    <option>Controller</option>
-                </select>
-            </div>
+            <Dropdown
+                label="Role"
+                value={this.props.role}
+                change={(event) => this.props.onUpdateStat("role", event.target.value)}
+                options={["Soldier", "Skirmisher", "Brute", "Artillery", "Lurker", "Controller"]}
+            />
         );
-        
         const sizeInput = (
-            <div>
-                <label>Size</label>
-                <select
-                    className={globalStyle.minorBorder}
-                    value={this.props.size} 
-                    onChange={(event) => this.props.onUpdateStat("size", event.target.value)}
-                >
-                    <option>Tiny</option>
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                    <option>Huge</option>
-                    <option>Colossal</option>
-                </select>
-            </div>    
+            <Dropdown
+                label="Size"
+                value={this.props.size}
+                change={(event) => this.props.onUpdateStat("size", event.target.value)}
+                options={["Tiny", "Small", "Medium", "Large", "Huge", "Colossal"]}
+            />
         );
-        
         return (
             <div className={style.landing}>
                 <div><h1 className={globalStyle.title}>D&D Monster Builder</h1></div>

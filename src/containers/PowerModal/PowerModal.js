@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
+import Dropdown from "../../components/UI/Dropdown/Dropdown";
 import Aux from "../../hoc/Aux/Aux";
 import Power from "../../components/Power/Power";
 import * as actions from "../../store/actions/index";
@@ -81,6 +82,7 @@ class PowerModal extends Component {
                         type="text"
                         name="range"
                         value={this.state.power.range}
+                        placeholder="Range"
                         onChange={(event) => this.inputHandler(event)}
                     />
                 );
@@ -149,7 +151,7 @@ class PowerModal extends Component {
                             onSubmit={(event) => this.submitHandler(event, this.state.power)}
                         >
                             <div className={style.inputBlock}>
-                                <label>Basic Attack</label>
+                                <label>Basic Attack?</label>
                                 <input 
                                     type="checkbox"
                                     name="basic"
@@ -166,59 +168,42 @@ class PowerModal extends Component {
                                     onChange={(event) => this.inputHandler(event)}
                                 />
                             </div>
-                            <div className={style.inputBlock}>
-                                <label>Action</label>
-                                <select name="action" value={this.state.power.action}
-                                    onChange={(event) => this.inputHandler(event)}>
-                                    <option>Standard</option>
-                                    <option>Move</option>
-                                    <option>Minor</option>
-                                    <option>Free</option>
-                                    <option>No Action</option>
-                                    <option>Immediate Interrupt</option>
-                                    <option>Immediate Reaction</option>
-                                    <option>Opportunity Action</option>
-                                </select>
-                            </div>
-                            <div className={style.inputBlock}>
-                                <label>Use</label>
-                                <select name="use" value={this.state.power.use}
-                                    onChange={(event) => this.inputHandler(event)}>
-                                    <option>At-Will</option>
-                                    <option>Encounter</option>
-                                    <option>Recharge when bloodied</option>
-                                    <option>Recharge(6)</option>
-                                    <option>Recharge(5,6)</option>
-                                    <option>Recharge(4,5,6)</option>
-                                    <option>When bloodied</option>
-                                    <option>When reduced to 0 hp</option>
-                                </select>
-                            </div>
-                            <div className={style.inputBlock}>
-                                <label>Range</label>
-                                <select name="target" value={this.state.power.target}
-                                    onChange={(event) => this.inputHandler(event)}>
-                                    <option>Melee</option>
-                                    <option>Ranged</option>
-                                    <option>Close Burst</option>
-                                    <option>Close Blast</option>
-                                    <option>Area Burst</option>
-                                    <option>Aura</option>
-                                    <option>Line</option>
-                                    <option>Self</option>
-                                </select>
-                                {attackRange}
-                            </div>
-                            <div className={style.inputBlock}>
-                                <label>Defense to Hit</label>
-                                <select name="defense" value={this.state.power.defense}
-                                    onChange={(event) => this.inputHandler(event)}>
-                                    <option>AC</option>
-                                    <option>Fortitude</option>
-                                    <option>Reflex</option>
-                                    <option>Will</option>
-                                </select>
-                            </div>
+                            <Dropdown
+                                className={style.inputBlock}
+                                name="action"
+                                label="Action"
+                                value={this.state.power.action}
+                                change={(event) => this.inputHandler(event)}
+                                options={["Standard", "Move", "Minor", "Free", "No Action", 
+                                    "Immediate Interrupt", "Immediate Reaction", "Opportunity Action"]}
+                            />
+                            <Dropdown
+                                className={style.inputBlock}
+                                name="use"
+                                label="Use"
+                                value={this.state.power.use}
+                                change={(event) => this.inputHandler(event)}
+                                options={["At-Will", "Encounter", "Recharge when bloodied", 
+                                    "Recharge(6)", "Recharge(5,6)", "Recharge(4,5,6)", 
+                                    "When bloodied", "When reduced to 0 hp"]}
+                            />
+                            <Dropdown
+                                className={style.inputBlock}
+                                name="target"
+                                label="Range"
+                                value={this.state.power.target}
+                                change={(event) => this.inputHandler(event)}
+                                options={["Melee", "Ranged", "Close Burst", "Close Blast", "Area Burst", 
+                                    "Aura", "Line", "Self"]}
+                            >{attackRange}</Dropdown>
+                            <Dropdown
+                                className={style.inputBlock}
+                                name="defense"
+                                label="Defense to Target"
+                                value={this.state.power.defense}
+                                change={(event) => this.inputHandler(event)}
+                                options={["AC", "Fortitude", "Reflex", "Will"]}
+                            />
                             <div className={style.inputBlock}>
                                 <label>Keywords</label>
                                 <input 
