@@ -1,3 +1,5 @@
+/* Used in <Auth/> and <Monsters/> during calls to database. */
+
 import React from "react";
 
 import style from "./Spinner.css";

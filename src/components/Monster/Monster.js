@@ -1,5 +1,8 @@
-import React from "react";
+/* This component creates a monster card from an entry in the user's monster database.
+   Used in a loop over all user saved monsters in <Monsters/> component. Users can load
+   monster for further editing or delete it from the database. */
 
+import React from "react";
 import style from "./Monster.css";
 import globalStyle from "../../global.css";
 

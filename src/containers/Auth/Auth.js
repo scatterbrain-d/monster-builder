@@ -1,3 +1,7 @@
+/* Log in/Sign up page reached through <Navbar/> or from "Log in to Save" in <Builder/>.
+   Handles user authentication through Firebase and redirects based on where user
+   is in the monster building process. */
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";

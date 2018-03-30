@@ -1,3 +1,6 @@
+/* Component used to create uniform <select> inputs in <Landing/> and
+   <PowerModal/>.*/
+
 import React from "react";
 
 import globalStyle from "../../../global.css";

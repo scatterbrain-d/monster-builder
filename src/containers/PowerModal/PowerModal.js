@@ -78,7 +78,7 @@ class PowerModal extends Component {
         
         const rangeInput = (
                     <input 
-                        className={style.shortInput}
+                        className={style.shortInput + " " + globalStyle.minorBorder}
                         type="text"
                         name="range"
                         value={this.state.power.range}
@@ -89,7 +89,7 @@ class PowerModal extends Component {
         
         const areaInput = (
                     <input
-                        className={style.shortInput}
+                        className={style.shortInput + " " + globalStyle.minorBorder}
                         type="text"
                         name="area"
                         value={this.state.power.area}
@@ -152,7 +152,7 @@ class PowerModal extends Component {
                         >
                             <div className={style.inputBlock}>
                                 <label>Basic Attack?</label>
-                                <input 
+                                <input
                                     type="checkbox"
                                     name="basic"
                                     value={this.state.power.basic}
@@ -162,6 +162,7 @@ class PowerModal extends Component {
                             <div className={style.inputBlock}>
                                 <label>Power Name</label>
                                 <input
+                                    className={globalStyle.minorBorder}
                                     type="text"
                                     name="name"
                                     value={this.state.power.name}
@@ -206,7 +207,8 @@ class PowerModal extends Component {
                             />
                             <div className={style.inputBlock}>
                                 <label>Keywords</label>
-                                <input 
+                                <input
+                                    className={globalStyle.minorBorder}
                                     type="text"
                                     name="keywords"
                                     value={this.state.power.keywords}
@@ -218,6 +220,7 @@ class PowerModal extends Component {
                                 <label>Power Text</label>
                                 <p>Suggested damage: {this.state.powerDamage}</p>
                                 <textarea
+                                    className={globalStyle.minorBorder}
                                     name="text"
                                     value={this.state.power.text}
                                     onChange={(event) => this.inputHandler(event)}

@@ -1,6 +1,8 @@
+/* Simple navbar is fixed to top of all pages. Links to <Auth/> and 
+   <Monsters/> change dynamically based on user authentication. */
+
 import React from "react";
 import {NavLink} from "react-router-dom";
-
 import style from "./Navbar.css";
 
 const navbar = (props) => {

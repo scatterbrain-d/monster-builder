@@ -1,3 +1,6 @@
+/* Backdrop used in <PowerModal/> to keep <Builder/> UI separate
+   from the superimposed modal window */
+
 import React from "react";
 
 import style from "./Backdrop.css";

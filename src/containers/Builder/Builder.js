@@ -1,3 +1,9 @@
+/* This component allows review and edit of monster stats, many of which are
+   calculated automatically from <Landing/> info. "Edit" mode provides input
+   fields for all stats and provides access to <PowerModal/> which creates and
+   edits powers. "Display" mode presents the monster and its powers in a user-
+   friendly format for gameplay. */
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
@@ -43,7 +49,6 @@ class Builder extends Component {
             monster: this.props.monster,
             userId: this.props.userId
         };
-        console.log(this.props.monsterId);
         if(this.props.monsterId === null)
             this.props.onSaveMonster(monster, this.props.token, this.props.userId);
         else

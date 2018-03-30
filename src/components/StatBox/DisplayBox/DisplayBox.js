@@ -1,3 +1,6 @@
+/* This component outputs the monster stat boxes in "Display" mode. Used
+   in <StatBox/>, which toggles between this and <EditBox/>. */
+
 import React from "react";
 
 import Aux from "../../../hoc/Aux/Aux";

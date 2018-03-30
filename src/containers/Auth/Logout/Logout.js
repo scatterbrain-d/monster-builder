@@ -1,3 +1,5 @@
+/* Link from <Navbar/>. Logs out user and redirects to landing page. */
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
@@ -9,7 +11,6 @@ class Logout extends Component {
     componentDidMount() {
         this.props.onLogout();
     }
-    
     render() {
         return <Redirect to="/"/>;
     }

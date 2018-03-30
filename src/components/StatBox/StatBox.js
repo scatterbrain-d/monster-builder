@@ -1,3 +1,5 @@
+/*Used in <Builder/> to toggle between "Edit" and "Display" mode.*/
+
 import React from "react";
 import EditBox from "./EditBox/EditBox";
 import DisplayBox from "./DisplayBox/DisplayBox";
