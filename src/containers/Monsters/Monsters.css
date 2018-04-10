@@ -1,6 +1,7 @@
 .monsters {
   width: 100%;
-  height: calc(100vh - 50px);
+  height: auto;
+  min-height: 100%;
   text-align: center;
   background-image: url("https://www.walldevil.com/wallpapers/a12/guild-wars-guild-wars-2.jpg");
   background-size: cover;

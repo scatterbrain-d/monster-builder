@@ -23,7 +23,12 @@ const DisplayBox = (props) => {
             content = <p>{props.value}</p>;
         break;
         case("hp"):
-            content = <p className={style.upper}>{props.name}: {props.value}({Math.floor(props.value/2)})</p>;
+            content = (
+                <Aux>
+                    <label>{props.name}</label>
+                    <p>{props.value}({Math.floor(props.value/2)})</p>
+                </Aux>
+            );
         break;
         case("level"):
             content = <p>{props.name} {props.value}</p>;

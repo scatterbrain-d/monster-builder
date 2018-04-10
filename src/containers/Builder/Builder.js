@@ -112,8 +112,8 @@ class Builder extends Component {
                 <div className={style.container}>
                     <h1 className={globalStyle.title}>{this.state.editMode ? "Edit" : "View"} Monster</h1>
                     <div className={style.buttons}>
-                        <button className={style.button} onClick={this.modeToggleHandler}>
-                            {this.state.editMode ? "Display" : "Edit"}
+                        <button className={style.button} /*onClick={this.modeToggleHandler}*/> 
+                            {this.state.editMode ? "Display (coming soon)" : "Edit"}
                         </button>
                         {powerButton}
                         {saveButton}

@@ -122,7 +122,18 @@ class PowerModal extends Component {
                 <button onClick={() => this.saveTemplateHandler(this.state.power)}>
                 Save as template</button>
             );
-        
+        /*
+        Basic attack input - playtest to see if needed
+        <div className={style.inputBlock}>
+            <label>Basic Attack?</label>
+            <input
+                type="checkbox"
+                name="basic"
+                value={this.state.power.basic}
+                onChange={(event) => this.inputHandler(event)}
+            />
+        </div>
+        */
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
@@ -139,7 +150,6 @@ class PowerModal extends Component {
                                     <Power
                                         power={template}
                                         attack={this.props.attackNad}
-                                        
                                     />
                                 </div>
                             ))}
@@ -150,15 +160,6 @@ class PowerModal extends Component {
                             className={style.powerForm}
                             onSubmit={(event) => this.submitHandler(event, this.state.power)}
                         >
-                            <div className={style.inputBlock}>
-                                <label>Basic Attack?</label>
-                                <input
-                                    type="checkbox"
-                                    name="basic"
-                                    value={this.state.power.basic}
-                                    onChange={(event) => this.inputHandler(event)}
-                                />
-                            </div>
                             <div className={style.inputBlock}>
                                 <label>Power Name</label>
                                 <input
@@ -218,7 +219,7 @@ class PowerModal extends Component {
                             </div>
                             <div className={style.inputBlock}>
                                 <label>Power Text</label>
-                                <p>Suggested damage: {this.state.powerDamage}</p>
+                                <p>(Avg. damage: {this.state.powerDamage})</p>
                                 <textarea
                                     className={globalStyle.minorBorder}
                                     name="text"
