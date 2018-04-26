@@ -10,20 +10,6 @@
   background-position: center;
 }
 
-.buttons {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.button {
-  width: 25%;
-  font-size: 0.8em;
-  margin: 0;
-}
-
 .container {
   text-align: center;
   width: 100%;
@@ -115,5 +101,4 @@
   .block {max-width: 500px;}
   .block label {font-size: 0.7em;}
   .editBlock input {font-size: 1.5em;}
-  .button {font-size: 1.2em;}
 }

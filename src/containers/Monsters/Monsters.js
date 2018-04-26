@@ -18,7 +18,6 @@ class Monsters extends Component {
     
     deleteMonsterHandler = (id) => {
         this.props.onDeleteMonster(this.props.token, id, this.props.userId);
-        // UPDATE MONSTER LIST SOMEHOW
     }
     
     render(){

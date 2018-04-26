@@ -14,27 +14,8 @@ const editBox = (props) => {
         dataType = "text";
         updateType= props.strUpdate;
     }
-    
-    
-    // dropdowns to be implemented in future build
-    // if (props.name === "keywords") {
-    //     content = (
-    //         <select onChange={props.strUpdate} value={props.value} multiple>
-    //             <option>aberrant</option>    
-    //             <option>aquatic</option>    
-    //             <option>elemental</option>    
-    //             <option>fey</option>    
-    //             <option>beast</option>    
-    //             <option>construct</option>    
-    //             <option>demon</option>    
-    //             <option>devil</option>    
-    //             <option>dragon</option>    
-    //         </select>
-    //     );
-    // }
         
-        
-    if (props.name === "img") label =  <label>{props.name} URL</label>;
+    if (props.name === "img") label =  <label>Image URL</label>;
         
     else label = <label>{props.name}</label>;
     

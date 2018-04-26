@@ -24,7 +24,6 @@ export const fetchMonstersSuccess = (monsters) => {
 export const fetchMonsters = (token, userId) => {
     return dispatch => {
         dispatch(asyncStart());
-        console.log(token, userId);
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
         axios.get('/monsters.json' + queryParams)
             .then(res => {

@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import Dropdown from "../../components/UI/Dropdown/Dropdown";
+import Input from "../../components/UI/Input/Input";
 import * as actions from "../../store/actions/index";
 import style from "./Landing.css";
 import globalStyle from "../../global.css";
@@ -17,53 +18,53 @@ class Landing extends Component {
     render() {
         
         const nameInput = (
-            <div className={style.name}>
-                <label>Name</label>
-                <input
-                    className={globalStyle.minorBorder}
-                    value={this.props.name} 
-                    onChange={(event) => this.props.onUpdateStat("name", event.target.value)}
-                    required
-                />
-            </div>
+            
+            <Input
+                className={style.name}
+                label="Name"
+                value={this.props.name}
+                changed={(event) => this.props.onUpdateStat("name", event.target.value)}
+                required="true"
+            />
         );  
         const levelInput = (
-            <div>
-                <label>Level</label>
-                <input 
-                    className={globalStyle.minorBorder + " " + style.number}
-                    type="number" 
-                    value={this.props.level} 
-                    onChange={(event) => this.props.onUpdateStat("level", Number(event.target.value))} 
-                    max="35" 
-                    min="1"
-                />
-            </div>
+            
+            <Input
+                label="Level"
+                value={this.props.level}
+                changed={(event) => this.props.onUpdateStat("level", Number(event.target.value))}
+                number="true"
+                required="true"
+            />
         );
         const threatInput = (
+            
             <Dropdown
                 label="Threat"
                 value={this.props.threat}
-                change={(event) => this.props.onUpdateStat("threat", event.target.value)}
+                changed={(event) => this.props.onUpdateStat("threat", event.target.value)}
                 options={["Standard", "Minion", "Elite", "Solo"]}
             />
         );
         const roleInput = (
+            
             <Dropdown
                 label="Role"
                 value={this.props.role}
-                change={(event) => this.props.onUpdateStat("role", event.target.value)}
+                changed={(event) => this.props.onUpdateStat("role", event.target.value)}
                 options={["Soldier", "Skirmisher", "Brute", "Artillery", "Lurker", "Controller"]}
             />
         );
         const sizeInput = (
+            
             <Dropdown
                 label="Size"
                 value={this.props.size}
-                change={(event) => this.props.onUpdateStat("size", event.target.value)}
+                changed={(event) => this.props.onUpdateStat("size", event.target.value)}
                 options={["Tiny", "Small", "Medium", "Large", "Huge", "Colossal"]}
             />
         );
+        
         return (
             <div className={style.landing}>
                 <div><h1 className={globalStyle.title}>D&D Monster Builder</h1></div>

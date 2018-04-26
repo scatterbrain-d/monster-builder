@@ -12,7 +12,7 @@ const dropdown = (props) => (
           className={globalStyle.minorBorder}
           name={props.name}
           value={props.value} 
-          onChange={props.change}
+          onChange={props.changed}
       >
         {props.options.map((option) =>
           (<option key={option}>{option}</option>)

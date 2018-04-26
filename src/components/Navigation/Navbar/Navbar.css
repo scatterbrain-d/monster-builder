@@ -9,15 +9,14 @@
   margin-top: 0;
   margin-left: -40px;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .navbar li {
   margin: 0;
-  padding: 0 2px;
+  padding: 0 8px;
   height: 100%;
   display: flex;
   text-align: center;

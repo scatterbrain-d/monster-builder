@@ -16,22 +16,6 @@
   margin: 5px;
 }
 
-.templates {
-  background-color: white;
-  width: 100%;
-  height: 40vh;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
-
-.templateWrapper {
-  margin: 5px;
-}
-
-.templateWrapper:hover {
-  border: 2px solid teal;
-}
-
 .powerModal {
   width: 100%;
   background-color: white;

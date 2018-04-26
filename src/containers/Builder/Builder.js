@@ -8,6 +8,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
+import BuilderButtons from "../../components/BuilderButtons/BuilderButtons";
 import StatBox from "../../components/StatBox/StatBox";
 import Power from "../../components/Power/Power";
 import PowerModal from "../PowerModal/PowerModal";
@@ -99,26 +100,21 @@ class Builder extends Component {
                     />
                 );
         
-        let powerButton = this.state.editMode ? <button className={style.button} onClick={this.powerEntryHandler}>Add Power</button> 
-            : null;
-        
-        let saveButton = <button className={style.button} onClick={this.saveMonsterHandler}>Save</button>;
-        
-        if (this.props.token === null)
-            saveButton = <button className={style.button} onClick={() => this.props.history.push("/auth")}>Log in to Save</button>;
-        
         return (
             <div className={style.builder}>
                 <div className={style.container}>
                     <h1 className={globalStyle.title}>{this.state.editMode ? "Edit" : "View"} Monster</h1>
-                    <div className={style.buttons}>
-                        <button className={style.button} /*onClick={this.modeToggleHandler}*/> 
-                            {this.state.editMode ? "Display (coming soon)" : "Edit"}
-                        </button>
-                        {powerButton}
-                        {saveButton}
-                    </div>
+                    
+                    <BuilderButtons
+                        editMode={this.state.editMode}
+                        token={this.props.token}
+                        powerClick={this.powerEntryHandler}
+                        saveClick={this.saveMonsterHandler}
+                        loginClick={() => this.props.history.push("/auth")}
+                    />
+                    
                     <div className={style.flexDisplay}>
+                        
                         <div className={
                             style.block
                             +" "+
@@ -153,6 +149,7 @@ class Builder extends Component {
                                     />
                             )})}
                         </div>
+                    
                     </div>
                     {powerModal}
                 </div>

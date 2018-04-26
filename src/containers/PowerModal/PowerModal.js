@@ -3,8 +3,10 @@ import {connect} from "react-redux";
 
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Dropdown from "../../components/UI/Dropdown/Dropdown";
+import Input from "../../components/UI/Input/Input";
 import Aux from "../../hoc/Aux/Aux";
-import Power from "../../components/Power/Power";
+import PowerTemplates from "../../components/PowerTemplates/PowerTemplates";
+
 import * as actions from "../../store/actions/index";
 import style from "./PowerModal.css";
 import globalStyle from "../../global.css";
@@ -68,10 +70,6 @@ class PowerModal extends Component {
         this.props.onSaveTemplate(power, this.props.token);
     }
     
-    loadTemplateHandler = (event) => {
-        console.log(event.target);
-    }
-    
     render(){
         
         let attackRange;
@@ -122,101 +120,83 @@ class PowerModal extends Component {
                 <button onClick={() => this.saveTemplateHandler(this.state.power)}>
                 Save as template</button>
             );
-        /*
-        Basic attack input - playtest to see if needed
-        <div className={style.inputBlock}>
-            <label>Basic Attack?</label>
-            <input
-                type="checkbox"
-                name="basic"
-                value={this.state.power.basic}
-                onChange={(event) => this.inputHandler(event)}
-            />
-        </div>
-        */
+        
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
+                
                 <div className={style.modalContainer}>
-                    <div className={style.templates + " " + globalStyle.mainBorder}>
-                        <h3>Templates</h3>
-                            {this.props.templates.map(template => (
-                                <div 
-                                    className={style.templateWrapper}
-                                    onClick={(event) => this.inputHandler(event, template)}
-                                    key={template.name}
-                                    title="Use template"
-                                >
-                                    <Power
-                                        power={template}
-                                        attack={this.props.attackNad}
-                                    />
-                                </div>
-                            ))}
-                    </div>
+                    
+                    <PowerTemplates
+                        templates={this.props.templates}
+                        attack={this.props.attackNad}
+                        clicked={(event, template) => this.inputHandler(event, template)}
+                    />
+                    
                     <div className={style.powerModal + " " + globalStyle.mainBorder}>
                         <h3>Add Power</h3>
                         <form 
                             className={style.powerForm}
                             onSubmit={(event) => this.submitHandler(event, this.state.power)}
                         >
-                            <div className={style.inputBlock}>
-                                <label>Power Name</label>
-                                <input
-                                    className={globalStyle.minorBorder}
-                                    type="text"
-                                    name="name"
-                                    value={this.state.power.name}
-                                    onChange={(event) => this.inputHandler(event)}
-                                />
-                            </div>
+                            <Input
+                                className={style.inputBlock}
+                                label="Power Name"
+                                name="name"
+                                type="text"
+                                value={this.state.power.name}
+                                changed={(event) => this.inputHandler(event)}
+                                required="true"
+                            />
+                            
                             <Dropdown
                                 className={style.inputBlock}
                                 name="action"
                                 label="Action"
                                 value={this.state.power.action}
-                                change={(event) => this.inputHandler(event)}
+                                changed={(event) => this.inputHandler(event)}
                                 options={["Standard", "Move", "Minor", "Free", "No Action", 
                                     "Immediate Interrupt", "Immediate Reaction", "Opportunity Action"]}
                             />
+                            
                             <Dropdown
                                 className={style.inputBlock}
                                 name="use"
                                 label="Use"
                                 value={this.state.power.use}
-                                change={(event) => this.inputHandler(event)}
+                                changed={(event) => this.inputHandler(event)}
                                 options={["At-Will", "Encounter", "Recharge when bloodied", 
                                     "Recharge(6)", "Recharge(5,6)", "Recharge(4,5,6)", 
                                     "When bloodied", "When reduced to 0 hp"]}
                             />
+                            
                             <Dropdown
                                 className={style.inputBlock}
                                 name="target"
                                 label="Range"
                                 value={this.state.power.target}
-                                change={(event) => this.inputHandler(event)}
+                                changed={(event) => this.inputHandler(event)}
                                 options={["Melee", "Ranged", "Close Burst", "Close Blast", "Area Burst", 
                                     "Aura", "Line", "Self"]}
                             >{attackRange}</Dropdown>
+                            
                             <Dropdown
                                 className={style.inputBlock}
                                 name="defense"
                                 label="Defense to Target"
                                 value={this.state.power.defense}
-                                change={(event) => this.inputHandler(event)}
+                                changed={(event) => this.inputHandler(event)}
                                 options={["AC", "Fortitude", "Reflex", "Will"]}
                             />
-                            <div className={style.inputBlock}>
-                                <label>Keywords</label>
-                                <input
-                                    className={globalStyle.minorBorder}
-                                    type="text"
-                                    name="keywords"
-                                    value={this.state.power.keywords}
-                                    onChange={(event) => this.inputHandler(event)}
-                                    placeholder="Keywords"
-                                />
-                            </div>
+                            
+                            <Input
+                                className={style.inputBlock}
+                                label="Keywords"
+                                name="keywords"
+                                value={this.state.power.keywords}
+                                changed={(event) => this.inputHandler(event)}
+                            />
+                            
                             <div className={style.inputBlock}>
                                 <label>Power Text</label>
                                 <p>(Avg. damage: {this.state.powerDamage})</p>
@@ -228,7 +208,11 @@ class PowerModal extends Component {
                                     placeholder={"put all power effects here"}
                                 ></textarea>
                             </div>
+                            
                             <div className={style.buttons}>
+                                <button
+                                    onClick={this.props.modalClosed}
+                                >Cancel</button>
                                 {saveTemplateButton}
                                 <button>Submit</button>
                             </div>

@@ -26,6 +26,7 @@
   font-size: 1.5em;
   font-weight: bold;
   width: 100%;
+  padding: 10px 0;
 }
 
 .creationForm label {
@@ -64,26 +65,19 @@
 .name label {
   width: 74px;  
 }
+
 .name input {
   flex-grow: 100;
   font-size: 1em;
   min-width: 0;
   font-weight: bold;
   color: var(--darkbrown);
-}
-
-.number {
-  font-size: 1em;
-  width: 60px;
-  text-align: center;
-  font-weight: bold;
-  color: var(--darkbrown);
+  background-color: buttonface;
 }
 
 @media only screen and (min-width: 350px) {
   .creationForm {width: 350px;}
   .creationForm select {width: auto;}
-  .name {width: 100%;}
 }
 
 @media only screen and (min-width: 650px) {

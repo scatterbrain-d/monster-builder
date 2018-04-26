@@ -7,10 +7,9 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
 import * as actions from "../../store/actions/index";
-import {checkValidity} from "../../shared/utility";
+import {checkValidity} from "../../utility/Utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Input from "../../components/UI/Input/Input";
-import Aux from "../../hoc/Aux/Aux";
 import style from "./Auth.css";
 import globalStyle from "../../global.css";
 
@@ -19,7 +18,6 @@ class Auth extends Component {
     state = {
         controls: {
             email: {
-                elementType: "input",
                 elementConfig: {
                     type: "email",
                     placeholder: "Email Address"
@@ -33,7 +31,6 @@ class Auth extends Component {
                 touched: false
             },
             password: {
-                elementType: "input",
                 elementConfig: {
                     type: "password",
                     placeholder: "Password"
@@ -86,19 +83,16 @@ class Auth extends Component {
         }
         
         let form = formElementsArray.map(formElement => (
-                <Aux key={formElement.id}>
-                    <label>{formElement.id}:</label>
-                    <Input
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        touched={formElement.config.touched}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        changed={(event) => this.inputChangedHandler(event, formElement.id)}
-                    
-                    />
-                </Aux>
+                <Input
+                    key={formElement.id}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    touched={formElement.config.touched}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                    required="true"
+                />
             ));
             
         if (this.props.loading) form = <Spinner/>;
@@ -115,6 +109,7 @@ class Auth extends Component {
             else
                 authRedirect = <Redirect to="/builder"/>;
         }
+        
         return (
             <div className={style.auth}>
                 
@@ -125,6 +120,7 @@ class Auth extends Component {
                 </h1>
                     
                     <div className={globalStyle.mainBorder + " " + style.authBox}>
+                        
                         <form 
                             className={style.authForm}
                             onSubmit={this.submitHandler}
@@ -133,11 +129,11 @@ class Auth extends Component {
                             {errorMessage}
                             <button>Submit</button>
                         </form>
-                        <button 
-                            onClick={this.switchAuthModeHandler}
-                        >
+                        
+                        <button onClick={this.switchAuthModeHandler}>
                             Switch to {this.state.isSignUp ? "Sign In" : "Sign Up"}
                         </button>
+                    
                     </div>
             </div>    
         );
