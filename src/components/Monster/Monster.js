@@ -9,12 +9,11 @@ import globalStyle from "../../global.css";
 const Monster = (props) => {
     return (
         <div className={style.fetchedMonster + " " + globalStyle.mainBorder}>
-            <div className={globalStyle.minorBorder}>
-                <img 
-                    src={props.stat.img} 
-                    alt="Your monster"
-                />
-            </div>
+            <img 
+                className={globalStyle.minorBorder}
+                src={props.stat.img} 
+                alt="Your monster"
+            />
             <h3>{props.stat.name}</h3>
             <p>Level {" " + props.stat.level}{" " + props.stat.threat}{" " + props.stat.role}</p>
             <div className={style.buttons}>
