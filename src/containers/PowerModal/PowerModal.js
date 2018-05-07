@@ -2,14 +2,12 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
-import Dropdown from "../../components/UI/Dropdown/Dropdown";
-import Input from "../../components/UI/Input/Input";
 import Aux from "../../hoc/Aux/Aux";
 import PowerTemplates from "../../components/PowerTemplates/PowerTemplates";
+import PowerModalForm from "../../components/PowerModalForm/PowerModalForm";
 
 import * as actions from "../../store/actions/index";
 import style from "./PowerModal.css";
-import globalStyle from "../../global.css";
 
 class PowerModal extends Component {
     
@@ -72,55 +70,6 @@ class PowerModal extends Component {
     
     render(){
         
-        let attackRange;
-        
-        const rangeInput = (
-                    <input 
-                        className={style.shortInput + " " + globalStyle.minorBorder}
-                        type="text"
-                        name="range"
-                        value={this.state.power.range}
-                        placeholder="Range"
-                        onChange={(event) => this.inputHandler(event)}
-                    />
-                );
-        
-        const areaInput = (
-                    <input
-                        className={style.shortInput + " " + globalStyle.minorBorder}
-                        type="text"
-                        name="area"
-                        value={this.state.power.area}
-                        placeholder="Area"
-                        onChange={(event) => this.inputHandler(event)}
-                    />
-                );
-        
-        switch (this.state.attackType) {
-            case 1:
-                attackRange = rangeInput;
-            break;
-            case 2:
-                attackRange = areaInput;
-            break;
-            case 3:
-                attackRange = (
-                    <Aux>
-                        {areaInput} <span> in </span> {rangeInput}
-                    </Aux>
-                );
-            break;
-            default: attackRange = null;
-        }
-        
-        let saveTemplateButton = "";
-        
-        if(this.props.token !== null)
-            saveTemplateButton = (
-                <button onClick={() => this.saveTemplateHandler(this.state.power)}>
-                Save as template</button>
-            );
-        
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
@@ -132,92 +81,18 @@ class PowerModal extends Component {
                         attack={this.props.attackNad}
                         clicked={(event, template) => this.inputHandler(event, template)}
                     />
-                    
-                    <div className={style.powerModal + " " + globalStyle.mainBorder}>
-                        <h3>Add Power</h3>
-                        <form 
-                            className={style.powerForm}
-                            onSubmit={(event) => this.submitHandler(event, this.state.power)}
-                        >
-                            <Input
-                                className={style.inputBlock}
-                                label="Power Name"
-                                name="name"
-                                type="text"
-                                value={this.state.power.name}
-                                changed={(event) => this.inputHandler(event)}
-                                required="true"
-                            />
-                            
-                            <Dropdown
-                                className={style.inputBlock}
-                                name="action"
-                                label="Action"
-                                value={this.state.power.action}
-                                changed={(event) => this.inputHandler(event)}
-                                options={["Standard", "Move", "Minor", "Free", "No Action", 
-                                    "Immediate Interrupt", "Immediate Reaction", "Opportunity Action"]}
-                            />
-                            
-                            <Dropdown
-                                className={style.inputBlock}
-                                name="use"
-                                label="Use"
-                                value={this.state.power.use}
-                                changed={(event) => this.inputHandler(event)}
-                                options={["At-Will", "Encounter", "Recharge when bloodied", 
-                                    "Recharge(6)", "Recharge(5,6)", "Recharge(4,5,6)", 
-                                    "When bloodied", "When reduced to 0 hp"]}
-                            />
-                            
-                            <Dropdown
-                                className={style.inputBlock}
-                                name="target"
-                                label="Range"
-                                value={this.state.power.target}
-                                changed={(event) => this.inputHandler(event)}
-                                options={["Melee", "Ranged", "Close Burst", "Close Blast", "Area Burst", 
-                                    "Aura", "Line", "Self"]}
-                            >{attackRange}</Dropdown>
-                            
-                            <Dropdown
-                                className={style.inputBlock}
-                                name="defense"
-                                label="Defense to Target"
-                                value={this.state.power.defense}
-                                changed={(event) => this.inputHandler(event)}
-                                options={["AC", "Fortitude", "Reflex", "Will"]}
-                            />
-                            
-                            <Input
-                                className={style.inputBlock}
-                                label="Keywords"
-                                name="keywords"
-                                value={this.state.power.keywords}
-                                changed={(event) => this.inputHandler(event)}
-                            />
-                            
-                            <div className={style.inputBlock}>
-                                <label>Power Text</label>
-                                <p>(Avg. damage: {this.state.powerDamage})</p>
-                                <textarea
-                                    className={globalStyle.minorBorder}
-                                    name="text"
-                                    value={this.state.power.text}
-                                    onChange={(event) => this.inputHandler(event)}
-                                    placeholder={"put all power effects here"}
-                                ></textarea>
-                            </div>
-                            
-                            <div className={style.buttons}>
-                                <button
-                                    onClick={this.props.modalClosed}
-                                >Cancel</button>
-                                {saveTemplateButton}
-                                <button>Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                        
+                    <PowerModalForm
+                        attackType={this.state.attackType}
+                        powerDamage={this.state.powerDamage}
+                        power={this.state.power}
+                        token={this.props.token}
+                        submitForm={(event, power) => this.submitHandler(event, power)}
+                        inputChange={(event) => this.inputHandler(event)}
+                        saveTemplate={(power) => this.saveTemplateHandler(power)}
+                        modalClosed={this.props.modalClosed}
+                    />
+
                 </div>
             </Aux>
         );

@@ -10,22 +10,25 @@ const input = (props) => {
     const inputClasses = [globalStyle.minorBorder];
     let extraProps;
     
-    if (props.invalid && props.shouldValidate && props.touched)
-        inputClasses.push("invalid");
-    
+    if (props.invalid && props.shouldValidate && props.touched) {
+        inputClasses.push(style.invalid);
+        console.log("invalid!");
+    }
     if (props.number) {
         inputClasses.push(style.number);
-        extraProps = {type: "number", min: "1", max: "35"};
+        extraProps = {min: "1", max: "35"};
     }
     
     if (props.required)
         extraProps = {...extraProps, required: "true"};
     
+    if(!props.value)
+        extraProps = {...extraProps, placeholder: props.placeholder};
+    
     return (
         <div className={props.className}>
             <label className="label">{props.label}</label>
             <input className={inputClasses.join(" ")} 
-                {...props.elementConfig} 
                 {...extraProps}
                 name={props.name}
                 value={props.value}

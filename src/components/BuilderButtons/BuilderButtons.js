@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import style from "./BuilderButtons.css";
 
@@ -22,10 +22,11 @@ const builderButtons = (props) => {
         onClick={props.loginClick}
     >Log in to Save</button>;
   
+  // modeButton disabled until I figure out styling for display mode
   const modeButton = 
     <button className={style.button} /*onClick={this.modeToggleHandler}*/> 
-            {props.editMode ? "Display (coming soon)" : "Edit"}
-        </button>;
+      {props.editMode ? "Display (coming soon)" : "Edit"}
+    </button>;
         
   return (
     <div className={style.buttons}>

@@ -47,6 +47,11 @@
     width: 70%;
 }
 
+.error {
+  font-weight: bold;
+  color: #A00;
+}
+
 @media only screen and (min-width: 350px) {
   .authBox {width: 90%;}
 }

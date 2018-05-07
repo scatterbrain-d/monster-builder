@@ -31,6 +31,7 @@ class Landing extends Component {
             
             <Input
                 label="Level"
+                type="number"
                 value={this.props.level}
                 changed={(event) => this.props.onUpdateStat("level", Number(event.target.value))}
                 number="true"
@@ -67,14 +68,23 @@ class Landing extends Component {
         
         return (
             <div className={style.landing}>
+                
                 <div><h1 className={globalStyle.title}>D&D Monster Builder</h1></div>
+                
                 <form className={style.creationForm + " " + globalStyle.mainBorder} onSubmit={this.onSubmitHandler}>
+                    
                     {nameInput}
+                    
                     {levelInput}
+                    
                     {threatInput}
+                    
                     {roleInput}
+                    
                     {sizeInput}
+                    
                     <div><button className={globalStyle.minorBorder}>Submit</button></div>
+                
                 </form>
             </div>
         );    

@@ -86,7 +86,7 @@
 .powerBlock {
   width: 100%;
   margin: 10px;
-  max-height: 100vh;
+  max-height: 60vh;
   overflow-y: auto;
 }
 

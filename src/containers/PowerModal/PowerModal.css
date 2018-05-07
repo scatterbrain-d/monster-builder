@@ -16,83 +16,10 @@
   margin: 5px;
 }
 
-.powerModal {
-  width: 100%;
-  background-color: white;
-  max-width: 500px;
-  height: 55vh;
-  overflow-y: auto;
-}
-
-.powerModal div {margin: 5px;}
-
-.powerForm {
-  margin: auto;
-  width: 100%;
-  text-align: left;
-}
-
-.inputBlock {
-  margin: 0 5px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 95%;
-  min-width: 0;
-  align-items: center;
-}
-
-.inputBlock input[type="text"],
-.inputBlock textarea {
-  flex: 1 1 auto;
-}
-
-.inputBlock p {
-  font-size: 1em;
-  margin: 0 auto;
-}
-
-.powerForm label {
-  padding: 5px;
-  font-weight: bold;
-  flex: 0 0 auto;
-}
-
-.powerForm span {
-  margin: auto 3px;
-}
-
-.shortInput {
-  width: 50px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 5px;
-}
-
 @media only screen and (min-width: 650px) {
   .modalContainer {
     top: 20%;
     flex-flow: row;
-  }
-  
-  .templates {
-    height: auto;
-    width: 45%;
-    max-width: 450px;
-    margin-bottom: 0;
-    max-height: 65vh;
-  }
-  
-  .powerModal {
-    height: auto;
-    width: 50%;
-    max-width: 500px;
-    max-height: 65vh;
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
   }
 }
 

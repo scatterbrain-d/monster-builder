@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
 import * as actions from "../../store/actions/index";
-import {checkValidity} from "../../utility/Utility";
+import {checkValidity} from "../../utility/utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Input from "../../components/UI/Input/Input";
 import style from "./Auth.css";
@@ -18,10 +18,8 @@ class Auth extends Component {
     state = {
         controls: {
             email: {
-                elementConfig: {
-                    type: "email",
-                    placeholder: "Email Address"
-                },
+                type: "email",
+                placeholder: "Email Address",
                 value: "",
                 validation: {
                     required: true,
@@ -31,10 +29,8 @@ class Auth extends Component {
                 touched: false
             },
             password: {
-                elementConfig: {
-                    type: "password",
-                    placeholder: "Password"
-                },
+                type: "password",
+                placeholder: "Password",
                 value: "",
                 validation: {
                     required: true,
@@ -82,10 +78,11 @@ class Auth extends Component {
             });
         }
         
-        let form = formElementsArray.map(formElement => (
+        let formContents = formElementsArray.map(formElement => (
                 <Input
                     key={formElement.id}
-                    elementConfig={formElement.config.elementConfig}
+                    type={formElement.config.type}
+                    placeholder={formElement.config.placeholder}
                     value={formElement.config.value}
                     touched={formElement.config.touched}
                     invalid={!formElement.config.valid}
@@ -95,11 +92,11 @@ class Auth extends Component {
                 />
             ));
             
-        if (this.props.loading) form = <Spinner/>;
+        if (this.props.loading) formContents = <Spinner/>;
         
         let errorMessage = null;
         
-        if (this.props.error) errorMessage = <p><strong>Error: {this.props.error.message}</strong></p>;
+        if (this.props.error) errorMessage = <p className={style.error}>{this.props.error.message}</p>;
         
         let authRedirect = null;
         if (this.props.token) {
@@ -125,8 +122,10 @@ class Auth extends Component {
                             className={style.authForm}
                             onSubmit={this.submitHandler}
                         >
-                            {form}
+                            {formContents}
+                            
                             {errorMessage}
+                            
                             <button>Submit</button>
                         </form>
                         

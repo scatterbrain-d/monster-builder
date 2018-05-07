@@ -23,7 +23,8 @@ class Monsters extends Component {
     render(){
         let monsters = <Spinner/>;
         
-        if(!this.props.loading)
+        if(!this.props.loading) {
+            console.log(this.props.monsters);
             monsters = (
                 <div>
                     <h1 className={globalStyle.title}>My Monsters</h1>
@@ -38,7 +39,7 @@ class Monsters extends Component {
                         ))}
                     </div>
                 </div>    
-            );
+            )}
         return (
             <div className={style.monsters}>
                 {monsters}

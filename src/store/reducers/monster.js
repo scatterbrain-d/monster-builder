@@ -1,6 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 
-import {create} from "./formulas/createMonster.js";
+import {create} from "../../utility/utility.js";
 
 //img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR40uexBQH3kdPstpwjgj1dzVDQOwzmt82-VJD7qQWPTQb1X42L5A",
 
