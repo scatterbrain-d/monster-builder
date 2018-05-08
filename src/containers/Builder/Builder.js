@@ -82,12 +82,6 @@ class Builder extends Component {
             });
         }
         
-        const powerArray = [];
-        
-        for (let key of Object.keys(this.props.powers)) {
-        powerArray.push(this.props.powers[key]);
-        }
-        
         let powerModal = null;
         
         if(this.state.showPowerModal)
@@ -138,7 +132,7 @@ class Builder extends Component {
                         
                         <div className={style.powerBlock}>
                             
-                            {powerArray.map((power, index) => {
+                            {this.props.powers.map((power, index) => {
                             return (
                                     <Power
                                         key={power.name}
